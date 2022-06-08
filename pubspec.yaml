@@ -45,6 +45,7 @@ dependencies:
   intl: ^0.17.0
   carousel_slider: ^4.1.1
   firebase_auth: ^0.15.1+1
+  font_awesome_flutter: ^10.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,4 @@
-import 'package:belajar_firebase/utils/constants.dart';
+import 'package:gonice/viewmodel/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -92,7 +92,8 @@ class _LoginPageState extends State<LoginPage> {
 
                     await _auth.signInWithEmailAndPassword(
                         email: email, password: password);
-                    Navigator.pushReplacementNamed(context, Constants.homeNavigate);
+                    Navigator.pushReplacementNamed(
+                        context, Constants.homeNavigate);
                   } catch (e) {
                     final snackbar = SnackBar(content: Text(e.toString()));
                     ScaffoldMessenger.of(context).showSnackBar(snackbar);
