@@ -1,8 +1,3 @@
-import 'dart:convert';
-
-List<Article> adBannerListFromJson(String val) => List<Article>.from(
-    json.decode(val)['article'].map((banner) => Article.fromJson(banner)));
-
 class ArticlesResult {
   ArticlesResult({
     required this.status,
