@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:gonice/page/user_profile/user_profile.dart';
 import 'package:gonice/widget/slider_box.dart';
+import 'package:gonice/widget/bmi.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home_page';
@@ -66,7 +67,8 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 20.0,
           ),
-          SliderBox()
+          SliderBox(),
+          bmiCalculator(),
         ],
       ),
     );
