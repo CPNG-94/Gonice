@@ -40,8 +40,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
               Row(
                 children: [
                   Container(
-                    width: 130,
-                    height: 130,
+                    height: MediaQuery. of(context).size.width/4,
+                    width: MediaQuery. of(context).size.width/4,
                     decoration: BoxDecoration(
                         border: Border.all(
                             width: 4,
