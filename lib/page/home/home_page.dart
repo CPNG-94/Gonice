@@ -27,41 +27,67 @@ class _HomePageState extends State<HomePage> {
               ),
               color: Color(0xFF00ADB5),
             ),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ListTile(
-                    title: const Text(
-                      "Hello",
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Hello,',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25.0,
                           color: Colors.white),
                     ),
-                    trailing: (IconButton(
-                      icon: const Icon(
-                        Icons.account_circle,
-                        size: 50,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const UserProfilePage()));
-                      },
-                    )),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 16.0),
-                    child: Text(
-                      "user",
+                    Text(
+                      'User',
                       style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white),
-                    ),
-                  )
-                ]),
+                        fontSize: 35,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+                Expanded(child: Container()),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const UserProfilePage()));
+                  },
+                  child: Container(
+                    width: 75,
+                    height: 75,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 4,
+                            color: Theme.of(context).scaffoldBackgroundColor),
+                        boxShadow: [
+                          BoxShadow(
+                            spreadRadius: 2,
+                            blurRadius: 10,
+                            color: Colors.black.withOpacity(0.1),
+                            offset: const Offset(0, 11),
+                          )
+                        ],
+                        shape: BoxShape.circle,
+                        image: const DecorationImage(
+                          image: NetworkImage(
+                              'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80'),
+                          fit: BoxFit.cover,
+                        )),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                )
+              ],
+            ),
           ),
           SliderBox(),
           const bmiCalculator(),

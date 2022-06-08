@@ -1,11 +1,15 @@
+import 'package:flutter/material.dart';
+
 import 'package:gonice/data/model/article.dart';
 import 'package:gonice/page/news/article_detail_page.dart';
-import 'package:flutter/material.dart';
 
 class CardArticle extends StatelessWidget {
   final Article article;
 
-  const CardArticle({required this.article});
+  const CardArticle({
+    Key? key,
+    required this.article,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
