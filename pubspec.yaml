@@ -47,6 +47,11 @@ dependencies:
   firebase_auth: ^0.15.1+1
   font_awesome_flutter: ^10.1.0
   google_sign_in: ^4.0.16
+  flutter_local_notifications: ^9.5.3+1
+  intl: ^0.17.0
+  rxdart: ^0.27.3
+  provider: ^6.0.3
+  http: ^0.13.4
   timezone: ^0.8.0
 
 dev_dependencies:
@@ -75,7 +80,10 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/Splashscreen.png
-  #   - images/a_dot_ham.jpeg
+    - assets/userWeight/Vector.jpg
+    - assets/userWeight/Vector-1.jpg
+    - assets/userWeight/Vector-2.jpg
+    - assets/userWeight/Vector-3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
