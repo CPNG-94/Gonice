@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gonice/page/latihan/screens/beginner_screen.dart';
 import '../page/home/home_page.dart';
-import '../page/latihan/latihan_page.dart';
 import '../page/news/news_page.dart';
 
 class MyDashboard extends StatefulWidget {
@@ -13,7 +13,7 @@ class MyDashboard extends StatefulWidget {
 class _MyDashboardState extends State<MyDashboard> {
   int _currentIndex = 0;
 
-  final tabs = [HomePage(), LatihanPage(), NewsPage()];
+  final tabs = [const HomePage(), const LatihanScreen(), const NewsPage()];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _MyDashboardState extends State<MyDashboard> {
           topRight: Radius.circular(10),
         ),
         child: BottomNavigationBar(
-          backgroundColor: Color(0xFFE7E7E7),
+          backgroundColor: const Color(0xFFE7E7E7),
           currentIndex: _currentIndex,
           items: const [
             BottomNavigationBarItem(
@@ -50,7 +50,7 @@ class _MyDashboardState extends State<MyDashboard> {
           selectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
-          selectedItemColor: Color(0xFF00ADB5),
+          selectedItemColor: const Color(0xFF00ADB5),
           onTap: (index) {
             setState(() {
               _currentIndex = index;

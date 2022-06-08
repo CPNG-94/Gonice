@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_custom/screens/excercise_screen.dart';
-import 'package:test_custom/widgets/excercise_added.dart';
+import 'package:gonice/page/latihan/screens/excercise_screen.dart';
+import 'package:gonice/page/latihan/widgets/excercise_added.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({Key? key}) : super(key: key);
@@ -10,7 +10,10 @@ class ListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Custom", style: TextStyle(color: Colors.green),),
+        title: const Text(
+          "Custom",
+          style: TextStyle(color: Colors.green),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -20,7 +23,10 @@ class ListScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const ExcerciseScreen()));},
+        onPressed: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const ExcerciseScreen()));
+        },
         backgroundColor: Colors.green,
         child: const Icon(Icons.add),
       ),

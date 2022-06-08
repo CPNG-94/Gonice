@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
 class notification extends StatefulWidget {
@@ -22,7 +21,6 @@ class _notificationState extends State<notification> {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       child: Card(
         shape: RoundedRectangleBorder(
@@ -31,7 +29,10 @@ class _notificationState extends State<notification> {
         elevation: 10,
         child: Row(
           children: [
-            SizedBox(width: 15, height: 50,),
+            SizedBox(
+              width: 15,
+              height: 50,
+            ),
             Icon(
               Icons.alarm,
               color: Colors.lightGreen,
@@ -40,8 +41,13 @@ class _notificationState extends State<notification> {
             SizedBox(width: 15),
             Column(
               children: [
-                Text("Alarm", style: TextStyle(fontWeight: FontWeight.bold),),
-                SizedBox(height: 5,),
+                Text(
+                  "Alarm",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
                 Text('11:00 WIB')
               ],
             ),

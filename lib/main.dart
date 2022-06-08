@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gonice/data/api/api_service.dart';
 import 'package:gonice/data/model/article.dart';
 import 'package:gonice/page/news/article_detail_page.dart';
-import 'package:gonice/page/news/article_detail_page.dart';
 import 'package:gonice/page/news/article_web_view.dart';
 import 'package:gonice/page/home/home_page.dart';
 import 'package:gonice/page/news/news_page.dart';
@@ -30,8 +29,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           initialRoute: SplashScreen.routeName,
           routes: {
-            SplashScreen.routeName: (context) => SplashScreen(),
-            HomePage.routeName: (context) => HomePage(),
+            SplashScreen.routeName: (context) => const SplashScreen(),
+            HomePage.routeName: (context) => const HomePage(),
             ArticleDetailPage.routeName: (context) => ArticleDetailPage(
                   article:
                       ModalRoute.of(context)?.settings.arguments as Article,

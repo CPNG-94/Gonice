@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_custom/widgets/latihan_list.dart';
+import 'package:gonice/page/latihan/widgets/latihan_list.dart';
 
 class LatihanScreen extends StatelessWidget {
   const LatihanScreen({Key? key}) : super(key: key);
@@ -9,7 +9,10 @@ class LatihanScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("LATIHAN", style: TextStyle(color: Colors.green),),
+        title: const Text(
+          "LATIHAN",
+          style: TextStyle(color: Colors.green),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),

@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class NewsPage extends StatelessWidget {
+  const NewsPage({Key? key}) : super(key: key);
+
   Widget _buildList() {
     return Consumer<NewsProvider>(
       builder: (context, state, _) {
         if (state.state == ResultState.Loading) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (state.state == ResultState.HasData) {
           return ListView.builder(
             shrinkWrap: true,
@@ -25,7 +27,7 @@ class NewsPage extends StatelessWidget {
         } else if (state.state == ResultState.Error) {
           return Center(child: Text(state.message));
         } else {
-          return Center(child: Text(''));
+          return const Center(child: const Text(''));
         }
       },
     );
@@ -37,7 +39,7 @@ class NewsPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.0,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'News',
           style: TextStyle(color: Colors.black),
         ),
@@ -48,7 +50,7 @@ class NewsPage extends StatelessWidget {
 
   Widget _buildIos(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
+      navigationBar: const CupertinoNavigationBar(
         middle: Text('News App'),
         transitionBetweenRoutes: false,
       ),

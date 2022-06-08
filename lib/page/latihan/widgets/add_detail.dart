@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import 'package:test_custom/controllers/excercise_controller.dart';
 // import 'package:test_custom/controllers/excercise_db_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:test_custom/models/excercise.dart';
+import 'package:gonice/models/excercise.dart';
 
 final excerciseRef = FirebaseFirestore.instance.collection('excercise');
 
@@ -20,7 +19,7 @@ class AddDetail extends StatefulWidget {
 class _AddDetailState extends State<AddDetail> {
   late Excercise exc;
   @override
-  void initState(){
+  void initState() {
     //getExcercise();
     getExcerciseById();
     super.initState();

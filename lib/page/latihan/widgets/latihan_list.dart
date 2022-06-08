@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_custom/screens/excercise_screen.dart';
-import 'package:test_custom/screens/list_screen.dart';
+import 'package:gonice/page/latihan/screens/list_screen.dart';
 
 class LatihanList extends StatelessWidget {
   const LatihanList({Key? key}) : super(key: key);
@@ -32,20 +31,21 @@ class LatihanList extends StatelessWidget {
               ),
               child: InkWell(
                 splashColor: Colors.grey,
-                onTap: (){},
+                onTap: () {},
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const <Widget>[
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child:
-                      SizedBox(
+                      child: SizedBox(
                         height: 100,
-                        child:  Text( "Beginner", style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        child: Text(
+                          "Beginner",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -73,20 +73,21 @@ class LatihanList extends StatelessWidget {
               ),
               child: InkWell(
                 splashColor: Colors.grey,
-                onTap: (){},
+                onTap: () {},
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const <Widget>[
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child:
-                      SizedBox(
+                      child: SizedBox(
                         height: 100,
-                        child:  Text( "Expert", style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        child: Text(
+                          "Expert",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -120,14 +121,15 @@ class LatihanList extends StatelessWidget {
                   children: const <Widget>[
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child:
-                      SizedBox(
+                      child: SizedBox(
                         height: 100,
-                        child:  Text( "Custom", style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        child: Text(
+                          "Custom",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

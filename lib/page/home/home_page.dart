@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:gonice/page/user_profile/user_profile.dart';
-import 'package:gonice/widget/slider_box.dart';
 import 'package:gonice/widget/bmi.dart';
+import 'package:gonice/widget/slider_box.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home_page';
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,7 +19,7 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: const EdgeInsets.fromLTRB(0, 50.0, 0, 32.0),
+            padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20.0),
@@ -36,7 +35,7 @@ class _HomePageState extends State<HomePage> {
                       "Hello",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
+                          fontSize: 25.0,
                           color: Colors.white),
                     ),
                     trailing: (IconButton(
@@ -48,14 +47,14 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => UserProfilePage()));
+                                builder: (context) => const UserProfilePage()));
                       },
                     )),
                   ),
                   const Padding(
                     padding: EdgeInsets.only(left: 16.0),
                     child: Text(
-                      "User",
+                      "user",
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w500,
@@ -64,11 +63,8 @@ class _HomePageState extends State<HomePage> {
                   )
                 ]),
           ),
-          const SizedBox(
-            height: 20.0,
-          ),
           SliderBox(),
-          bmiCalculator(),
+          const bmiCalculator(),
         ],
       ),
     );

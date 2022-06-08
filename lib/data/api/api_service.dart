@@ -3,10 +3,10 @@ import 'package:http/http.dart' as http;
 import 'package:gonice/data/model/article.dart';
 
 class ApiService {
-  static final String _baseUrl = 'https://newsapi.org/v2/';
-  static final String _apiKey = '6ace2996147146779027ae5a0c837f3c';
-  static final String _category = 'health';
-  static final String _country = 'id';
+  static const String _baseUrl = 'https://newsapi.org/v2/';
+  static const String _apiKey = '6ace2996147146779027ae5a0c837f3c';
+  static const String _category = 'health';
+  static const String _country = 'id';
 
   Future<ArticlesResult> topHeadlines() async {
     final response = await http.get(Uri.parse(_baseUrl +

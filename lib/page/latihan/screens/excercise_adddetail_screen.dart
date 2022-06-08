@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_custom/widgets/add_detail.dart';
+import 'package:gonice/page/latihan/widgets/add_detail.dart';
 
 class ExcerciseAddDetailScreen extends StatelessWidget {
   const ExcerciseAddDetailScreen({Key? key}) : super(key: key);

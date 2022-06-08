@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:gonice/data/model/article.dart';
 import 'package:gonice/data/model/carousel_model.dart';
 import 'package:gonice/page/news/article_web_view.dart';
 import 'package:http/http.dart';
@@ -18,10 +17,10 @@ class _SliderBoxState extends State<SliderBox> {
   List<NewsQueryModel> newsModelList = <NewsQueryModel>[];
   List<NewsQueryModel> newsModelListCarousel = <NewsQueryModel>[];
 
-  static final String _baseUrl = 'https://newsapi.org/v2/';
-  static final String _apiKey = '6ace2996147146779027ae5a0c837f3c';
-  static final String _category = 'health';
-  static final String _country = 'id';
+  static const String _baseUrl = 'https://newsapi.org/v2/';
+  static const String _apiKey = '6ace2996147146779027ae5a0c837f3c';
+  static const String _category = 'health';
+  static const String _country = 'id';
 
   bool isLoading = true;
 
@@ -131,13 +130,17 @@ class _SliderBoxState extends State<SliderBox> {
                         ),
                       );
                     } catch (e) {
+                      // ignore: avoid_print
                       print(e);
                       return Container();
                     }
                   });
                 }).toList(),
                 options: CarouselOptions(
-                    height: 200, autoPlay: true, enlargeCenterPage: true),
+                  height: 200,
+                  autoPlay: true,
+                  enlargeCenterPage: true,
+                ),
               ));
   }
 
