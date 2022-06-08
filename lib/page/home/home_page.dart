@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:gonice/page/user_profile/user_profile.dart';
 import 'package:gonice/widget/slider_box.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,7 +43,12 @@ class _HomePageState extends State<HomePage> {
                         Icons.account_circle,
                         size: 50,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UserProfilePage()));
+                      },
                     )),
                   ),
                   const Padding(

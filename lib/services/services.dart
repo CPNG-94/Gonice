@@ -12,7 +12,7 @@ class FirebaseService {
           await _googleSignIn.signIn();
       final GoogleSignInAuthentication googleSignInAuthentication =
           await googleSignInAccount!.authentication;
-      final AuthCredential credential = GoogleAuthProvider.getCredential(
+      final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
       );
