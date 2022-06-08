@@ -1,5 +1,5 @@
-import 'package:belajar_firebase/services/firebase_service.dart';
-import 'package:belajar_firebase/utils/constants.dart';
+import 'package:gonice/services/services.dart';
+import 'package:gonice/viewmodel/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +9,6 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    User? result = FirebaseAuth.instance.currentUser;
     return Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
@@ -98,7 +97,7 @@ class _GoogleSignInState extends State<GoogleSignIn> {
                   Navigator.pushNamedAndRemoveUntil(
                       context, Constants.homeNavigate, (route) => false);
                 } catch (e) {
-                  if (e is FirebaseAuthException) {
+                  if (e is PlatformException) {
                     showMessage(e.message!);
                   }
                 }
