@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:gonice/page/login/welcome_page.dart';
 import 'package:gonice/viewmodel/dashboard.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   loginRoute() {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const MyDashboard()));
+        context, MaterialPageRoute(builder: (context) => const WelcomePage()));
   }
 
   @override

@@ -15,18 +15,17 @@ class WelcomePage extends StatelessWidget {
             image: DecorationImage(
                 repeat: ImageRepeat.repeat,
                 fit: BoxFit.fitHeight,
-                image: AssetImage('assets/images/bckgr.jpg'))),
+                image: AssetImage('assets/bckgr.jpg'))),
         child: Scaffold(
             backgroundColor: Colors.transparent,
-            body: AnnotatedRegion<SystemUiOverlayStyle>(
-              value: Constants.statusBarColor,
+            body: SafeArea(
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 150),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset("assets/images/logo.png"),
+                      Image.asset("assets/logo.png"),
                       const SizedBox(height: 10),
                       const Text(
                         "Best app for building your \n Fitness from home",

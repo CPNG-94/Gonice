@@ -4,7 +4,7 @@ import 'package:gonice/widget/bmi.dart';
 import 'package:gonice/widget/slider_box.dart';
 
 class HomePage extends StatefulWidget {
-  static const routeName = '/home_page';
+  static const routeName = '/home';
   const HomePage({Key? key}) : super(key: key);
 
   @override

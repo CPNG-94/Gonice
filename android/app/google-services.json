@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "651800251984",
+    "project_id": "gonice-36125",
+    "storage_bucket": "gonice-36125.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651800251984:android:5a43ec22d4864cd4ee8b55",
+        "android_client_info": {
+          "package_name": "com.example.gonice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651800251984-0aemkq63plsttu3kutun9evp7od716h6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhLv7NxJJfv-PKD91_RZTIZxahbIpVMwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651800251984-0aemkq63plsttu3kutun9evp7od716h6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

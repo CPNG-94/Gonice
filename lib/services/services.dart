@@ -19,9 +19,8 @@ class FirebaseService {
       await _auth.signInWithCredential(credential);
     } on PlatformException catch (e) {
       print(e.message);
-      rethrow;
+      throw e;
     }
-    return null;
   }
 
   Future<void> signOutFromGoogle() async {
