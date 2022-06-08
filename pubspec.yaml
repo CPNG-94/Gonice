@@ -44,6 +44,7 @@ dependencies:
   url_launcher: ^5.2.7
   intl: ^0.17.0
   carousel_slider: ^4.1.1
+  firebase_auth: ^0.15.1+1
 
 dev_dependencies:
   flutter_test:
