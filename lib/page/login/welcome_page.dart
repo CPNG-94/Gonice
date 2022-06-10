@@ -1,10 +1,13 @@
+import 'package:gonice/page/login/login_page.dart';
 import 'package:gonice/services/services.dart';
 import 'package:gonice/viewmodel/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gonice/viewmodel/dashboard.dart';
 
 class WelcomePage extends StatelessWidget {
+  static const routeName = '/welcome_page';
   const WelcomePage({Key? key}) : super(key: key);
 
   @override
@@ -39,8 +42,10 @@ class WelcomePage extends StatelessWidget {
                         width: size.width * 0.8,
                         child: OutlinedButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(
-                                context, Constants.loginPage);
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()));
                           },
                           child: const Text(
                             Constants.textSignIn,

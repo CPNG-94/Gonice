@@ -1,8 +1,12 @@
+import 'package:gonice/page/home/home_page.dart';
+import 'package:gonice/page/login/register_page.dart';
 import 'package:gonice/viewmodel/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gonice/viewmodel/dashboard.dart';
 
 class LoginPage extends StatefulWidget {
+  static const routeName = '/login_page';
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -20,6 +24,18 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.teal,
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -94,8 +110,8 @@ class _LoginPageState extends State<LoginPage> {
 
                     await _auth.signInWithEmailAndPassword(
                         email: email, password: password);
-                    Navigator.pushReplacementNamed(
-                        context, Constants.homeNavigate);
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => MyDashboard()));
                   } catch (e) {
                     final snackbar = SnackBar(content: Text(e.toString()));
                     ScaffoldMessenger.of(context).showSnackBar(snackbar);
@@ -107,8 +123,8 @@ class _LoginPageState extends State<LoginPage> {
                 }),
             TextButton(
               child: const Text('Do not have on account? Sign Up'),
-              onPressed: () =>
-                  Navigator.pushNamed(context, Constants.registerPage),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => RegisterPage())),
             ),
           ],
         ),

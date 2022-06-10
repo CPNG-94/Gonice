@@ -12,7 +12,7 @@ class ListScreen extends StatelessWidget {
         centerTitle: true,
         title: const Text(
           "Custom",
-          style: TextStyle(color: Colors.green),
+          style: TextStyle(color: Colors.teal),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,

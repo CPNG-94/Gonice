@@ -17,7 +17,22 @@ class ArticleDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('News App'),
+        title: const Center(
+          child: Text(
+            'News',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.teal,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -62,7 +77,14 @@ class ArticleDetailPage extends StatelessWidget {
                       Navigator.pushNamed(context, ArticleWebView.routeName,
                           arguments: article.url);
                     },
-                  ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.teal,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      textStyle:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  )
                 ],
               ),
             ),

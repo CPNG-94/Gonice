@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gonice/page/user_profile/user_profile.dart';
 import 'package:gonice/widget/bmi.dart';
@@ -12,6 +13,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  User? user = FirebaseAuth.instance.currentUser;
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -34,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       'Hello,',
                       style: TextStyle(
@@ -43,9 +50,9 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.white),
                     ),
                     Text(
-                      'User',
+                      user!.email!,
                       style: TextStyle(
-                        fontSize: 35,
+                        fontSize: 10,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),

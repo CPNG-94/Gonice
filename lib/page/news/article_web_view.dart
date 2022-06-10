@@ -18,6 +18,7 @@ class ArticleWebView extends StatelessWidget {
     return CustomScaffold(
       body: WebView(
         initialUrl: url,
+        //javascriptMode: JavascriptMode.unrestricted,
       ),
     );
   }
