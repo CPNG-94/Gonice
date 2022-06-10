@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gonice/data/model/article.dart';
@@ -13,26 +14,81 @@ class CardArticle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        leading: Hero(
-          tag: article.urlToImage!,
-          child: Image.network(
-            article.urlToImage!,
-            width: 100,
+    return Card(
+      elevation: 0,
+      shape: const RoundedRectangleBorder(
+        side: BorderSide(
+          color: Colors.black,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+      child: Material(
+        color: Colors.white,
+        child: InkWell(
+          onTap: () => Navigator.pushNamed(context, ArticleDetailPage.routeName,
+              arguments: article),
+          child: Container(
+            padding: const EdgeInsets.all(4),
+            decoration: const BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(-15, -15),
+                  blurRadius: 22,
+                  color: Colors.transparent,
+                )
+              ],
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(0)),
+            ),
+            margin: const EdgeInsets.all(4.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Hero(
+                      tag: article.urlToImage!,
+                      child: Image.network(
+                        article.urlToImage!,
+                        width: 100,
+                        height: 100,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            article.title!,
+                            textAlign: TextAlign.start,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                CupertinoIcons.person_alt,
+                                size: 20,
+                              ),
+                              Text(article.author!)
+                            ],
+                          )
+                        ],
+                      ),
+                    ))
+              ],
+            ),
           ),
-        ),
-        title: Text(
-          article.title!,
-        ),
-        subtitle: Text(article.author!),
-        onTap: () => Navigator.pushNamed(
-          context,
-          ArticleDetailPage.routeName,
-          arguments: article,
         ),
       ),
     );
