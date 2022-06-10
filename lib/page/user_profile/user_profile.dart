@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gonice/widget/alarm.dart';
 import 'package:gonice/page/user_profile/user_settings.dart';
@@ -11,6 +12,12 @@ class UserProfilePage extends StatefulWidget {
 }
 
 class _UserProfilePageState extends State<UserProfilePage> {
+  User? user = FirebaseAuth.instance.currentUser;
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,8 +47,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
               Row(
                 children: [
                   Container(
-                    height: MediaQuery. of(context).size.width/4,
-                    width: MediaQuery. of(context).size.width/4,
+                    height: MediaQuery.of(context).size.width / 4,
+                    width: MediaQuery.of(context).size.width / 4,
                     decoration: BoxDecoration(
                         border: Border.all(
                             width: 4,
@@ -66,11 +73,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   ),
                   Column(
                     children: [
-                      const Text(
-                        'Muhammad Hafid Nur Azis',
+                      Text(
+                        user!.email!,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      const Text('zisnura20@gmail.com')
+                      Text(user!.email!)
                     ],
                   ),
                   Expanded(child: Container()),

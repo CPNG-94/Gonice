@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       user!.email!,
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 20,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),
