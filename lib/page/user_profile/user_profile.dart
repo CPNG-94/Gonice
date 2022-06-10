@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gonice/page/login/login_page.dart';
 import 'package:gonice/widget/alarm.dart';
 import 'package:gonice/page/user_profile/user_settings.dart';
 import 'package:gonice/widget/bmi_user.dart';
@@ -12,6 +13,7 @@ class UserProfilePage extends StatefulWidget {
 }
 
 class _UserProfilePageState extends State<UserProfilePage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   User? user = FirebaseAuth.instance.currentUser;
   @override
   void initState() {
@@ -123,7 +125,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18.0),
                     ))),
-                onPressed: () {},
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      (Route<dynamic> route) => false);
+                },
                 child: const Text('Logout'),
               ),
               const SizedBox(

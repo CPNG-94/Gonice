@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Hello,',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Text(
                       user!.email!,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,

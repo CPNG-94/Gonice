@@ -4,7 +4,6 @@ import 'package:gonice/viewmodel/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gonice/viewmodel/dashboard.dart';
 
 class WelcomePage extends StatelessWidget {
   static const routeName = '/welcome_page';

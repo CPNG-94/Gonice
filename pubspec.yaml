@@ -54,6 +54,8 @@ dependencies:
   firebase_core: ^1.17.0
   cloud_firestore: ^3.1.17
   get: ^4.6.5
+  fluttertoast: ^8.0.9
+  flutter_spinkit: ^5.1.0
 
 dev_dependencies:
   flutter_test:

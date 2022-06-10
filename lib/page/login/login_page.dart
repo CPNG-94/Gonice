@@ -1,4 +1,6 @@
-import 'package:gonice/page/home/home_page.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gonice/data/database/authentication.dart';
 import 'package:gonice/page/login/register_page.dart';
 import 'package:gonice/viewmodel/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,126 +18,249 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _auth = FirebaseAuth.instance;
+  var _passwordVisible = true;
+  var _visible = false;
 
-  bool _obscureText = true;
-  bool _isLoading = false;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.teal,
+      body: Stack(
+        children: [
+          Image.asset(
+            "assets/bckgr.jpg",
+            fit: BoxFit.fill,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
           ),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : Container(),
-            Hero(
-              tag: 'LOGIN',
-              child: Text(
-                'Hello!! Welcome Back!',
-                style: Theme.of(context).textTheme.headline5,
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 50,
+                left: 16,
+                right: 16,
               ),
-            ),
-            const SizedBox(height: 24.0),
-            const Text(
-              'Email Address ',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-            ),
-            const SizedBox(height: 8.0),
-            TextField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Email',
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            const Text(
-              'Password',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-            ),
-            const SizedBox(height: 8.0),
-            TextField(
-              controller: _passwordController,
-              obscureText: _obscureText,
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                      _obscureText ? Icons.visibility : Icons.visibility_off),
-                  onPressed: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                ),
-                hintText: 'Password',
-              ),
-            ),
-            const SizedBox(height: 24.0),
-            OutlinedButton(
-                child: const Text(
-                  "Login",
-                  style: TextStyle(color: Constants.kPrimaryColor),
-                ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Constants.kDarkBlueColor),
-                    side:
-                        MaterialStateProperty.all<BorderSide>(BorderSide.none)),
-                onPressed: () async {
-                  setState(() {
-                    _isLoading = true;
-                  });
-                  try {
-                    final email = _emailController.text;
-                    final password = _passwordController.text;
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Masuk',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 45,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const Text(
+                      'Email',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
 
-                    await _auth.signInWithEmailAndPassword(
-                        email: email, password: password);
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => MyDashboard()));
-                  } catch (e) {
-                    final snackbar = SnackBar(content: Text(e.toString()));
-                    ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                  } finally {
-                    setState(() {
-                      _isLoading = false;
-                    });
-                  }
-                }),
-            TextButton(
-              child: const Text('Do not have on account? Sign Up'),
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => RegisterPage())),
+                    //Email Colom
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 1),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: TextFormField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Email tidak boleh kosong';
+                          } else if (!value.contains('@') ||
+                              !value.contains('.')) {
+                            return 'Format Email tidak sesuai';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      'Kata Sandi',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    /// KOLOM Kata Sandi
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 1),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: TextFormField(
+                        controller: _passwordController,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        obscureText: _passwordVisible,
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            icon: Icon((_passwordVisible)
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                            onPressed: () {
+                              setState(() {
+                                _passwordVisible = !_passwordVisible;
+                              });
+                            },
+                          ),
+                          border: InputBorder.none,
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Kata Sandi tidak boleh kosong';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'Atau Masuk dengan?',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+
+                    /// LOADING INDIKATOR
+                    Visibility(
+                      visible: _visible,
+                      child: const SpinKitRipple(
+                        color: Color(0xfffbbb5b),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(
+                          width: 140,
+                          height: 45,
+                          // ignore: deprecated_member_use
+                          child: RaisedButton(
+                            onPressed: () async {
+                              /// CEK APAKAH EMAIL DAN PASSWORD SUDAH TERISI DENGAN FORMAT YANG BENAR
+                              if (_formKey.currentState!.validate()) {
+                                setState(() {
+                                  _visible = true;
+                                });
+
+                                /// CEK APAKAH EMAIL DAN PASSWORD SUDAH TERDAFTAR / BELUM
+                                bool shouldNavigate =
+                                    await Authentication.signInHandler(
+                                  _emailController.text,
+                                  _passwordController.text,
+                                );
+
+                                if (shouldNavigate) {
+                                  setState(() {
+                                    _visible = false;
+                                  });
+
+                                  _formKey.currentState!.reset();
+
+                                  /// MASUK KE HOMEPAGE JIKA SUKSES
+                                  Route route = MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MyDashboard());
+                                  Navigator.pushReplacement(context, route);
+                                } else {
+                                  setState(() {
+                                    _visible = false;
+                                  });
+                                }
+                              }
+                            },
+                            color: Colors.orange,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Text(
+                              'Masuk',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 150,
+                          height: 45,
+                          // ignore: deprecated_member_use
+                          child: RaisedButton(
+                            onPressed: () {
+                              Route route = MaterialPageRoute(
+                                  builder: (context) => const RegisterPage());
+                              Navigator.push(context, route);
+                            },
+                            color: Colors.orange,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Text(
+                              'Pendaftaran',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
+}
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
+void toast(String message) {
+  Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.orange,
+      textColor: Colors.white,
+      fontSize: 16.0);
 }

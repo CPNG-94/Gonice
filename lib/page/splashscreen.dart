@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gonice/page/login/welcome_page.dart';
-import 'package:gonice/viewmodel/dashboard.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash_screen';
