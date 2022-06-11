@@ -13,7 +13,6 @@ class UserProfilePage extends StatefulWidget {
 }
 
 class _UserProfilePageState extends State<UserProfilePage> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   User? user = FirebaseAuth.instance.currentUser;
   @override
   void initState() {

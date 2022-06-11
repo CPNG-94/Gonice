@@ -137,7 +137,7 @@ class _SliderBoxState extends State<SliderBox> {
                   });
                 }).toList(),
                 options: CarouselOptions(
-                  height: 200,
+                  height: 230,
                   autoPlay: true,
                   enlargeCenterPage: true,
                 ),
