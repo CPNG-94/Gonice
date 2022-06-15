@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_custom/controllers/excercise_db_controller.dart';
-import 'package:test_custom/page/latihan/screens/list_screen.dart';
+import 'package:Gonice/controllers/excercise_db_controller.dart';
+import 'package:Gonice/page/latihan/screens/list_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ExcerciseDetail extends StatefulWidget {
