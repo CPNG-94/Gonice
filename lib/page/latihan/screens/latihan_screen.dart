@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_custom/page/latihan/widgets/latihan_list.dart';
+import 'package:Gonice/page/latihan/widgets/latihan_list.dart';
 
 class LatihanScreen extends StatelessWidget {
   const LatihanScreen({Key? key}) : super(key: key);
