@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:gonice/models/excercise_list.dart';
+import 'package:gonice/models/excercise_list_expert.dart';
 
-class BeginnerList extends StatelessWidget {
-  const BeginnerList({Key? key}) : super(key: key);
+class ExpertList extends StatelessWidget {
+  const ExpertList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Flexible(
         child: ListView.builder(
-      itemCount: Exercises.excercise.length,
+      itemCount: ExercisesExpert.excercise.length,
       itemBuilder: (BuildContext context, int index) {
         return BeginnerListCard(index: index);
       },
@@ -44,7 +44,7 @@ class BeginnerListCard extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Image.network(Exercises.excercise[index].image),
+                  Image.network(ExercisesExpert.excercise[index].image),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -52,14 +52,14 @@ class BeginnerListCard extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(
-                          Exercises.excercise[index].name,
+                          ExercisesExpert.excercise[index].name,
                           style: const TextStyle(fontSize: 16.0),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         Text(
-                          'Rep : ${Exercises.excercise[index].repetion} ',
+                          'Rep : ${ExercisesExpert.excercise[index].repetion} ',
                         ),
                       ],
                     ),

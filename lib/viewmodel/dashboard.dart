@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gonice/page/latihan/screens/beginner_screen.dart';
+import 'package:gonice/page/latihan/screens/latihan_screen.dart';
 import '../page/home/home_page.dart';
 import '../page/news/news_page.dart';
 

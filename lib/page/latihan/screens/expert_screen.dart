@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gonice/page/latihan/screens/excercise_screen.dart';
 import 'package:gonice/page/latihan/screens/latihan_screen.dart';
-import 'package:gonice/page/latihan/widgets/excercise_added.dart';
-import 'package:gonice/page/latihan/widgets/excercise_detail.dart';
+import 'package:gonice/page/latihan/widgets/expert_detail.dart';
+import 'package:gonice/page/latihan/widgets/expert_list.dart';
 
-class ListScreen extends StatelessWidget {
+class ExpertScreen extends StatelessWidget {
   int index = 0;
-  ListScreen({Key? key}) : super(key: key);
+  ExpertScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +21,9 @@ class ListScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.add),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ExcerciseScreen()));
-            },
-            color: Colors.black,
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ExcerciseDetail(index: index)));
+                  builder: (context) => ExpertDetail(index: index)));
             },
             icon: const Icon(Icons.play_arrow_rounded),
             color: Colors.black,
@@ -40,16 +31,18 @@ class ListScreen extends StatelessWidget {
         ],
         centerTitle: true,
         title: const Text(
-          "CUSTOM",
+          "EXPERT",
           style: TextStyle(color: Colors.green),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          ExcerciseAdded(),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: const [
+            ExpertList(),
+          ],
+        ),
       ),
     );
   }

@@ -6,8 +6,9 @@ class Excercise {
   final String name;
   final String desc;
   final String vidUrl;
+  final String imgUrl;
 
-  const Excercise({required this.name, required this.desc, required this.vidUrl, required this.id});
+  const Excercise({required this.name, required this.desc, required this.vidUrl, required this.id, required this.imgUrl});
 
   static Excercise fromSnapshot(DocumentSnapshot snap) {
     Excercise excercise = Excercise(
@@ -15,6 +16,7 @@ class Excercise {
       name: snap['name'],
       desc: snap['desc'],
       vidUrl: snap['vidUrl'],
+      imgUrl: snap['imgUrl'],
     );
     return excercise;
   }

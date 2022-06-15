@@ -11,7 +11,7 @@ class LatihanScreen extends StatelessWidget {
         centerTitle: true,
         title: const Text(
           "LATIHAN",
-          style: TextStyle(color: Colors.teal),
+          style: TextStyle(color: Colors.green),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,

@@ -1,8 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gonice/controllers/excercise_db_controller.dart';
 import 'package:gonice/controllers/excercise_controller.dart';
+import 'package:gonice/controllers/excercise_db_controller.dart';
 import 'package:gonice/page/latihan/widgets/add_detail.dart';
 
 class ExcerciseList extends StatelessWidget {
@@ -29,68 +28,39 @@ class ExcerciseListCard extends StatelessWidget {
   final listController = Get.put(ExcerciseController());
   final ExcerciseDBController excerciseDBController = Get.find();
   final int index;
+
   ExcerciseListCard({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTile(
-            leading: const Icon(Icons.broken_image),
-            title: Text(excerciseDBController.excercise[index].name),
-            trailing: Column(
-              children: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    listController
-                        .addExcercise(excerciseDBController.excercise[index]);
-                    createDB();
-                    Navigator.pop(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AddDetail(
-                                excId: excerciseDBController
-                                    .excercise[index].id)));
-                  },
-                  icon: const Icon(Icons.add),
-                ),
-              ],
+    final detailId = excerciseDBController.excercise[index];
+    return Container(
+      height: 100,
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: Image.network(detailId.imgUrl),
+              title: Text(detailId.name),
+              trailing: Column(
+                children: <Widget>[
+                  IconButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => AddDetail(
+                              detailID: detailId.id,
+                              youtubeID: detailId.vidUrl,
+                              index: index)));
+                    },
+                    icon: const Icon(Icons.add),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
-
-  Future createDB() async {
-    final input = FirebaseFirestore.instance.collection('saved').doc();
-
-    final savedInput = saved(
-      id: input.id,
-      name: excerciseDBController.excercise[index].name,
-      date: DateTime.now(),
-    );
-    final json = savedInput.toJson();
-    await input.set(json);
-  }
-}
-
-class saved {
-  String id;
-  final String name;
-  DateTime date;
-
-  saved({
-    this.id = "",
-    required this.name,
-    required this.date,
-  });
-
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'date': date,
-      };
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../widgets/excercise_list.dart';
-import 'list_screen.dart';
 
 class ExcerciseScreen extends StatelessWidget {
   const ExcerciseScreen({Key? key}) : super(key: key);
@@ -9,15 +7,16 @@ class ExcerciseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Tambah")),
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("TAMBAH", style: TextStyle(color: Colors.green),),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: SafeArea(
         child: Column(
           children: [
             ExcerciseList(),
-            ElevatedButton(
-              onPressed: () => Get.to(() => const ListScreen()),
-              child: const Text('Lihat Daftar'),
-            ),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gonice/data/api/api_service.dart';
 import 'package:gonice/data/model/article.dart';
 import 'package:gonice/page/login/login_page.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
             child: const NewsPage(),
           )
         ],
-        child: MaterialApp(
+        child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
           initialRoute: SplashScreen.routeName,
           routes: {

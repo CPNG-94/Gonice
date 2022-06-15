@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-//import 'package:test_custom/controllers/excercise_controller.dart';
 import 'package:gonice/controllers/excercise_db_controller.dart';
 
 class ExcerciseAdded extends StatelessWidget {
@@ -12,12 +12,11 @@ class ExcerciseAdded extends StatelessWidget {
     return Obx(
       () => Flexible(
         child: ListView.builder(
-            itemCount: excerciseController.excercise2.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ExcerciseAddedCard(
-                index: index,
-              );
-            }),
+          itemCount: excerciseController.excercise2.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ExcerciseAddedCard(index: index);
+          },
+        ),
       ),
     );
   }
@@ -37,6 +36,7 @@ class ExcerciseAddedCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
+            height: 100,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
@@ -48,29 +48,28 @@ class ExcerciseAddedCard extends StatelessWidget {
                 ),
               ],
             ),
-            child: Card(
-              shadowColor: Colors.grey,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: InkWell(
-                splashColor: Colors.grey,
-                onTap: () {},
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+            child: Container(
+              height: 100,
+              child: Card(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 100,
-                        child: Text(
-                          excerciseDBController2.excercise2[index].name,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                    ListTile(
+                      leading: Image.network(
+                          excerciseDBController2.excercise2[index].imgUrl),
+                      title:
+                          Text(excerciseDBController2.excercise2[index].name),
+                      subtitle: Text(
+                          'Rep : ${excerciseDBController2.excercise2[index].rep.toString()} '),
+                      trailing: Column(
+                        children: <Widget>[
+                          IconButton(
+                            onPressed: () {
+                              showAlertDialog(context);
+                            },
+                            icon: const Icon(Icons.delete),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                   ],
@@ -82,6 +81,36 @@ class ExcerciseAddedCard extends StatelessWidget {
       ),
     );
   }
-}
 
-//excerciseDBController2.excercise2[index].name
+  showAlertDialog(BuildContext context) {
+    Widget batalButton = TextButton(
+      onPressed: () {
+        Navigator.pop(context, true);
+      },
+      child: const Text('Batal'),
+    );
+    Widget hapusButton = TextButton(
+      onPressed: () {
+        final deleteExcercise = FirebaseFirestore.instance
+            .collection('saved')
+            .doc(excerciseDBController2.excercise2[index].id);
+        deleteExcercise.delete();
+        Navigator.pop(context, true);
+      },
+      child: const Text('Hapus'),
+    );
+    AlertDialog alert = AlertDialog(
+      content: Text("Anda yakin ingin menghapus?"),
+      actions: [
+        batalButton,
+        hapusButton,
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+}

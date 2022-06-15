@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gonice/page/latihan/screens/beginner_screen.dart';
+import 'package:gonice/page/latihan/screens/expert_screen.dart';
 import 'package:gonice/page/latihan/screens/list_screen.dart';
 
 class LatihanList extends StatelessWidget {
@@ -31,7 +33,7 @@ class LatihanList extends StatelessWidget {
               ),
               child: InkWell(
                 splashColor: Colors.grey,
-                onTap: () {},
+                onTap: () => Get.to(() => BeginnerScreen()),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const <Widget>[
@@ -39,12 +41,15 @@ class LatihanList extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       child: SizedBox(
                         height: 100,
-                        child: Text(
-                          "Beginner",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        child: Center(
+                          child: Text(
+                            "Beginner",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
@@ -73,7 +78,7 @@ class LatihanList extends StatelessWidget {
               ),
               child: InkWell(
                 splashColor: Colors.grey,
-                onTap: () {},
+                onTap: () => Get.to(() => ExpertScreen()),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const <Widget>[
@@ -81,12 +86,15 @@ class LatihanList extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       child: SizedBox(
                         height: 100,
-                        child: Text(
-                          "Expert",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        child: Center(
+                          child: Text(
+                            "Expert",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
@@ -115,7 +123,7 @@ class LatihanList extends StatelessWidget {
               ),
               child: InkWell(
                 splashColor: Colors.grey,
-                onTap: () => Get.to(() => const ListScreen()),
+                onTap: () => Get.to(() => ListScreen()),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const <Widget>[
@@ -123,12 +131,15 @@ class LatihanList extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       child: SizedBox(
                         height: 100,
-                        child: Text(
-                          "Custom",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        child: Center(
+                          child: Text(
+                            "Custom",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
