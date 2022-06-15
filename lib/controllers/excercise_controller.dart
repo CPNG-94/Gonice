@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:test_custom/models/excercise.dart';
+import 'package:Gonice/models/excercise.dart';
 
 class ExcerciseController extends GetxController {
 
