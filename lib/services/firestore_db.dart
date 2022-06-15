@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:test_custom/models/excercise.dart';
-import 'package:test_custom/models/excercise2.dart';
+import 'package:Gonice/models/excercise.dart';
+import 'package:Gonice/models/excercise2.dart';
 
 class FirestoreDB{
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
