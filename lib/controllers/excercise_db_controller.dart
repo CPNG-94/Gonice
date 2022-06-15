@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:test_custom/services/firestore_db.dart';
+import 'package:Gonice/services/firestore_db.dart';
 import '../models/excercise.dart';
 import '../models/excercise2.dart';
 
