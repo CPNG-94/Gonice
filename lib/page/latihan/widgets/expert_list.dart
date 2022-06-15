@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_custom/models/excercise_list_expert.dart';
+import 'package:Gonice/models/excercise_list_expert.dart';
 
 class ExpertList extends StatelessWidget {
   const ExpertList({Key? key}) : super(key: key);
