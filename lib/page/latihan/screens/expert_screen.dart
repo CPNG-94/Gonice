@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test_custom/page/latihan/screens/latihan_screen.dart';
-import 'package:test_custom/page/latihan/widgets/expert_detail.dart';
-import 'package:test_custom/page/latihan/widgets/expert_list.dart';
+import 'package:Gonice/page/latihan/screens/latihan_screen.dart';
+import 'package:Gonice/page/latihan/widgets/expert_detail.dart';
+import 'package:Gonice/page/latihan/widgets/expert_list.dart';
 
 class ExpertScreen extends StatelessWidget {
   int index = 0;
