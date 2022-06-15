@@ -1,19 +1,10 @@
-<<<<<<< HEAD
-=======
-import 'package:belajar_firebase/screens/home_page.dart';
-import 'package:belajar_firebase/screens/register_page.dart';
-import 'package:belajar_firebase/services/authentikasi.dart';
->>>>>>> a80c3245ebc61cd33cfcfef9e2f8dd2cab4e757b
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-<<<<<<< HEAD
 import 'package:gonice/data/database/authentication.dart';
 import 'package:gonice/page/login/register_page.dart';
 import 'package:gonice/viewmodel/dashboard.dart';
-=======
->>>>>>> a80c3245ebc61cd33cfcfef9e2f8dd2cab4e757b
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login_page';
@@ -165,13 +156,8 @@ class _LoginPageState extends State<LoginPage> {
                         _formKey.currentState!.reset();
 
                         /// MASUK KE HOMEPAGE JIKA SUKSES
-<<<<<<< HEAD
                         Route route = MaterialPageRoute(
                             builder: (context) => MyDashboard());
-=======
-                        Route route =
-                            MaterialPageRoute(builder: (context) => HomePage());
->>>>>>> a80c3245ebc61cd33cfcfef9e2f8dd2cab4e757b
                         Navigator.pushReplacement(context, route);
                       } else {
                         setState(() {
@@ -205,14 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     child: const Text(
                       'Sign Up',
-<<<<<<< HEAD
                       style: TextStyle(fontSize: 15, color: Colors.teal),
-=======
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.teal
-                      ),
->>>>>>> a80c3245ebc61cd33cfcfef9e2f8dd2cab4e757b
                     ),
                   ),
                 ],

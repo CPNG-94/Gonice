@@ -29,8 +29,8 @@ class Authentication {
     }
   }
 
-  static registeringUserToDatabase(
-      String name, String email, String password) async {
+  static registeringUserToDatabase(String name, String email, String password,
+      String height, String weight) async {
     try {
       String uid = FirebaseAuth.instance.currentUser!.uid;
       // ignore: avoid_print
@@ -40,9 +40,21 @@ class Authentication {
         "name": name,
         "email": email,
         "password": password,
+        "height": height,
+        "weight": weight,
       });
     } catch (error) {
       toast("Gagal Melakukan Pendaftaran");
     }
   }
+}
+
+getUserProfile(String email) async {
+  return FirebaseFirestore.instance
+      .collection("users")
+      .where("email", isEqualTo: email)
+      .get()
+      .catchError((e) {
+    print(e.toString());
+  });
 }
