@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_custom/controllers/excercise_db_controller.dart';
-import 'package:test_custom/controllers/excercise_controller.dart';
-import 'package:test_custom/page/latihan/widgets/add_detail.dart';
+import 'package:Gonice/controllers/excercise_db_controller.dart';
+import 'package:Gonice/controllers/excercise_controller.dart';
+import 'package:Gonice/page/latihan/widgets/add_detail.dart';
 
 class ExcerciseList extends StatelessWidget {
   final excerciseController = Get.put(ExcerciseDBController());
