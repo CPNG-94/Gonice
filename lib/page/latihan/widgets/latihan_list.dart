@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_custom/page/latihan/screens/beginner_screen.dart';
-import 'package:test_custom/page/latihan/screens/expert_screen.dart';
-import 'package:test_custom/page/latihan/screens/list_screen.dart';
+import 'package:Gonice/page/latihan/screens/beginner_screen.dart';
+import 'package:Gonice/page/latihan/screens/expert_screen.dart';
+import 'package:Gonice/page/latihan/screens/list_screen.dart';
 
 class LatihanList extends StatelessWidget {
 
