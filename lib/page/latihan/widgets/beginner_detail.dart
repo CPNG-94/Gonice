@@ -31,8 +31,7 @@ class _BeginnerDetailState extends State<BeginnerDetail> {
             icon: const Icon(Icons.arrow_back_ios),
             color: Colors.black,
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => BeginnerScreen()));
+              Navigator.of(context).pop();
             },
           ),
           backgroundColor: Colors.transparent,

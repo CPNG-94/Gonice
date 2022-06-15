@@ -37,8 +37,7 @@ class _ExcerciseDetailState extends State<ExcerciseDetail> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
             onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => ListScreen()));
+              Navigator.of(context).pop();
             },
           ),
         ),

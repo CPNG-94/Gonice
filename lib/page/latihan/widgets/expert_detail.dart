@@ -31,8 +31,7 @@ class _ExpertDetailState extends State<ExpertDetail> {
             icon: const Icon(Icons.arrow_back_ios),
             color: Colors.black,
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ExpertScreen()));
+              Navigator.of(context).pop();
             },
           ),
           backgroundColor: Colors.transparent,
