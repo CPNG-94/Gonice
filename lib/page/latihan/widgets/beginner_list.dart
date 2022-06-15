@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_custom/models/excercise_list.dart';
+import 'package:Gonice/models/excercise_list.dart';
 
 class BeginnerList extends StatelessWidget {
   const BeginnerList({Key? key}) : super(key: key);
