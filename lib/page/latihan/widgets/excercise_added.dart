@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_custom/controllers/excercise_db_controller.dart';
+import 'package:Gonice/controllers/excercise_db_controller.dart';
 
 class ExcerciseAdded extends StatelessWidget {
   ExcerciseAdded({Key? key}) : super(key: key);
