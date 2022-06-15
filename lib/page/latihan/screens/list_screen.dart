@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_custom/page/latihan/screens/excercise_screen.dart';
-import 'package:test_custom/page/latihan/screens/latihan_screen.dart';
-import 'package:test_custom/page/latihan/widgets/excercise_added.dart';
-import 'package:test_custom/page/latihan/widgets/excercise_detail.dart';
+import 'package:Gonice/page/latihan/screens/excercise_screen.dart';
+import 'package:Gonice/page/latihan/screens/latihan_screen.dart';
+import 'package:Gonice/page/latihan/widgets/excercise_added.dart';
+import 'package:Gonice/page/latihan/widgets/excercise_detail.dart';
 
 class ListScreen extends StatelessWidget {
   int index = 0;
