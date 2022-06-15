@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_custom/models/excercise_list.dart';
-import 'package:test_custom/page/latihan/screens/beginner_screen.dart';
+import 'package:Gonice/models/excercise_list.dart';
+import 'package:Gonice/page/latihan/screens/beginner_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class BeginnerDetail extends StatefulWidget {
