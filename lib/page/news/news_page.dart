@@ -23,11 +23,12 @@ class NewsPage extends StatelessWidget {
             },
           );
         } else if (state.state == ResultState.NoData) {
-          return Center(child: Text(state.message));
+          return const Center(child: CircularProgressIndicator());
         } else if (state.state == ResultState.Error) {
-          return Center(child: Text(state.message));
+          return const Center(
+              child: Text("Tidak Ada Internet coba periksa Jaringan anda"));
         } else {
-          return const Center(child: const Text(''));
+          return const Center(child: Text(''));
         }
       },
     );

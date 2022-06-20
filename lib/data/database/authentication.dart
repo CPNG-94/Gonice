@@ -12,7 +12,7 @@ class Authentication {
       return true;
     } catch (error) {
       toast(
-          'Terdapat Kendala Ketika Ingin Login . Silahkan Perikas Email & Password');
+          'Terdapat Kendala Ketika Ingin Login . Silahkan Periksa Email,Password dan Koneksi Internet Anda');
       return false;
     }
   }
