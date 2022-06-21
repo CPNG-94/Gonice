@@ -48,13 +48,3 @@ class Authentication {
     }
   }
 }
-
-getUserProfile(String email) async {
-  return FirebaseFirestore.instance
-      .collection("users")
-      .where("email", isEqualTo: email)
-      .get()
-      .catchError((e) {
-    print(e.toString());
-  });
-}
