@@ -16,8 +16,7 @@ class ListScreen extends StatelessWidget {
           color: Colors.black,
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const LatihanScreen()));
+            Navigator.of(context).pop();
           },
         ),
         actions: [
