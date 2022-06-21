@@ -83,14 +83,20 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             fit: BoxFit.cover,
                           )),
                     ),
-                    const SizedBox(
-                      width: 20,
+                    Expanded(
+                      child: Container(),
                     ),
                     Column(
                       children: [
-                        Text(
-                          streamSnapshot.data!['name'],
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 4,
+                          child: Text(
+                            streamSnapshot.data!['name'],
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            softWrap: false,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
                         Text(user!.email!)
                       ],
@@ -117,7 +123,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     ],
                   ),
                 ),
-                const bmiUser(height: streamSnapshot.data!['height'],weight: streamSnapshot.data!['weight'],),
+                bmiUser(
+                  height: streamSnapshot.data!['height'],
+                  weight: streamSnapshot.data!['weight'],
+                ),
                 Container(
                   padding: const EdgeInsets.only(top: 20, bottom: 10, left: 16),
                   child: Row(

@@ -6,8 +6,7 @@ class Authentication {
   static signInHandler(String email, String password) async {
     try {
       (await FirebaseAuth.instance
-              .signInWithEmailAndPassword(email: email, password: password))
-          .user;
+          .signInWithEmailAndPassword(email: email, password: password));
 
       return true;
     } catch (error) {

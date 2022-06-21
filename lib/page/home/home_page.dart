@@ -9,7 +9,7 @@ import 'package:gonice/widget/slider_box.dart';
 class HomePage extends StatefulWidget {
   static const routeName = '/home';
 
-  HomePage({
+  const HomePage({
     Key? key,
   }) : super(key: key);
 
@@ -18,7 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   User? user = FirebaseAuth.instance.currentUser;
   CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('users');
@@ -29,14 +28,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return SafeArea(
+      child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 0),
         child: StreamBuilder<DocumentSnapshot>(
             stream: usersCollection.doc(user?.uid).snapshots(),
             builder: (ctx, streamSnapshot) {
               if (streamSnapshot.connectionState == ConnectionState.waiting) {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(
                     color: Colors.blue,
                   ),
@@ -70,14 +69,19 @@ class _HomePageState extends State<HomePage> {
                                     fontSize: 25.0,
                                     color: Colors.white),
                               ),
-                              Text(
-                                streamSnapshot.data!['name'],
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
-                                ),
-                              )
+                              SizedBox(
+                                  width: 250,
+                                  child: Text(
+                                    streamSnapshot.data!['name'],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: false,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
+                                  ))
                             ],
                           ),
                           Expanded(child: Container()),

@@ -53,6 +53,7 @@ class BeginnerListCard extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           ExercisesExpert.excercise[index].name,
+                          overflow: TextOverflow.fade,
                           style: const TextStyle(fontSize: 16.0),
                         ),
                         const SizedBox(
