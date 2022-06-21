@@ -7,12 +7,13 @@ class ExpertList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-        child: ListView.builder(
-      itemCount: ExercisesExpert.excercise.length,
-      itemBuilder: (BuildContext context, int index) {
-        return BeginnerListCard(index: index);
-      },
-    ));
+      child: ListView.builder(
+        itemCount: ExercisesExpert.excercise.length,
+        itemBuilder: (BuildContext context, int index) {
+          return BeginnerListCard(index: index);
+        },
+      ),
+    );
   }
 }
 
@@ -22,53 +23,51 @@ class BeginnerListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(10),
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+      ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.grey,
-                  spreadRadius: -4,
-                  blurRadius: 1,
-                  offset: Offset(0, 0),
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Ink.image(
+                image: NetworkImage(
+                  ExercisesExpert.excercise[index].image,
                 ),
-              ],
-            ),
-            child: Card(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Image.network(ExercisesExpert.excercise[index].image),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          ExercisesExpert.excercise[index].name,
-                          overflow: TextOverflow.fade,
-                          style: const TextStyle(fontSize: 16.0),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Rep : ${ExercisesExpert.excercise[index].repetion} ',
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                child: InkWell(
+                  onTap: (){},
+                ),
+                height: 170,
+                fit: BoxFit.fitHeight,
+              ),
+            ],
+          ),
+          SizedBox(height: 8),
+          Padding(
+            padding: EdgeInsets.all(16).copyWith(bottom: 0),
+            child: Text(
+              ExercisesExpert.excercise[index].name,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
           ),
+          Padding(
+            padding: EdgeInsets.all(16).copyWith(bottom: 0),
+            child: Text(
+              'Repetisi: ${ExercisesExpert.excercise[index].repetion}',
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          SizedBox(height: 8),
         ],
       ),
     );
