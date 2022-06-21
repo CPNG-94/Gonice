@@ -123,10 +123,14 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     ],
                   ),
                 ),
+<<<<<<< HEAD
                 bmiUser(
                   height: streamSnapshot.data!['height'],
                   weight: streamSnapshot.data!['weight'],
                 ),
+=======
+                bmiUser(height: streamSnapshot.data!['height'],weight: streamSnapshot.data!['weight'],),
+>>>>>>> 9ca967a5aa10ddc2b499e60bf0df19525398a6f1
                 Container(
                   padding: const EdgeInsets.only(top: 20, bottom: 10, left: 16),
                   child: Row(
