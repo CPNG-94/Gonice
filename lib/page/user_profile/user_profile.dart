@@ -5,6 +5,7 @@ import 'package:gonice/page/login/login_page.dart';
 import 'package:gonice/widget/alarm.dart';
 import 'package:gonice/page/user_profile/user_settings.dart';
 import 'package:gonice/widget/bmi_user.dart';
+import 'dart:convert';
 
 class UserProfilePage extends StatefulWidget {
   const UserProfilePage({Key? key}) : super(key: key);
@@ -123,14 +124,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     ],
                   ),
                 ),
-<<<<<<< HEAD
                 bmiUser(
-                  height: streamSnapshot.data!['height'],
-                  weight: streamSnapshot.data!['weight'],
+                  height: int.parse(streamSnapshot.data!['height']),
+                  weight: int.parse(streamSnapshot.data!['weight']),
                 ),
-=======
-                bmiUser(height: streamSnapshot.data!['height'],weight: streamSnapshot.data!['weight'],),
->>>>>>> 9ca967a5aa10ddc2b499e60bf0df19525398a6f1
                 Container(
                   padding: const EdgeInsets.only(top: 20, bottom: 10, left: 16),
                   child: Row(
