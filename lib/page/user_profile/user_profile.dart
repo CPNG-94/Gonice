@@ -117,7 +117,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     ],
                   ),
                 ),
-                const bmiUser(),
+                const bmiUser(height: streamSnapshot.data!['height'],weight: streamSnapshot.data!['weight'],),
                 Container(
                   padding: const EdgeInsets.only(top: 20, bottom: 10, left: 16),
                   child: Row(
