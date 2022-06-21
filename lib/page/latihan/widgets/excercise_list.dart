@@ -34,33 +34,50 @@ class ExcerciseListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final detailId = excerciseDBController.excercise[index];
-    return Container(
-      height: 100,
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: Image.network(detailId.imgUrl),
-              title: Text(detailId.name),
-              trailing: Column(
-                children: <Widget>[
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => AddDetail(
-                              detailID: detailId.id,
-                              youtubeID: detailId.vidUrl,
-                              index: index)));
-                    },
-                    icon: const Icon(Icons.add),
-                  ),
-                ],
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Column(
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Ink.image(
+                image: NetworkImage(
+                  detailId.imgUrl,
+                ),
+                child: InkWell(
+                  onTap: (){Navigator.of(context).push(
+                      MaterialPageRoute(
+                      builder: (context) => AddDetail(
+                          detailID: detailId.id,
+                          youtubeID: detailId.vidUrl,
+                          index: index)));},
+                ),
+                height: 170,
+                fit: BoxFit.fitHeight,
+              ),
+            ],
+          ),
+          SizedBox(height: 8),
+          Padding(
+            padding: EdgeInsets.all(16).copyWith(bottom: 0),
+            child: Text(
+              detailId.name,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
-          ],
-        ),
+          ),
+          SizedBox(height: 8),
+        ],
       ),
     );
   }
 }
+
+
