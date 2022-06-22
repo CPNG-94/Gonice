@@ -16,8 +16,8 @@ class _UserEditPageState extends State<UserEditPage> {
     return Scaffold(
       appBar: AppBar(
         title: Column(
-          children: [
-            const Center(
+          children: const [
+            Center(
               child: Text(
                 'Edit Profile',
                 style: TextStyle(color: Colors.black),
@@ -92,9 +92,6 @@ class _UserEditPageState extends State<UserEditPage> {
             ),
             const TextField(
               decoration: InputDecoration(labelText: 'Email'),
-            ),
-            const TextField(
-              decoration: InputDecoration(labelText: 'Birth Day'),
             ),
             TextField(
               keyboardType:

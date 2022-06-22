@@ -13,7 +13,7 @@ class MyDashboard extends StatefulWidget {
 class _MyDashboardState extends State<MyDashboard> {
   int _currentIndex = 0;
 
-  final tabs = [HomePage(), const LatihanScreen(), const NewsPage()];
+  final tabs = [HomePage(), const LatihanScreen(), NewsPage()];
 
   @override
   Widget build(BuildContext context) {
