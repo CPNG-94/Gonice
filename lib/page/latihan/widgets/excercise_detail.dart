@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gonice/controllers/excercise_db_controller.dart';
-
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ExcerciseDetail extends StatefulWidget {
@@ -42,92 +41,82 @@ class _ExcerciseDetailState extends State<ExcerciseDetail> {
       ),
       body: PageView.builder(
         onPageChanged: _onPageViewChange,
-        physics: const NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.vertical,
         controller: controller,
         itemCount: widget.excerciseController.excercise2.length,
         itemBuilder: (BuildContext context, int index) {
           final YoutubePlayerController _controller = YoutubePlayerController(
-              initialVideoId:
-                  widget.excerciseController.excercise2[index].vidUrl,
+              initialVideoId: widget.excerciseController.excercise2[index].vidUrl,
               flags: const YoutubePlayerFlags(
                 autoPlay: false,
                 mute: false,
               ));
-          return Scaffold(
-            body: Container(
-              padding: const EdgeInsets.all(20),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    YoutubePlayer(
-                      controller: _controller,
-                      liveUIColor: Colors.amber,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(widget.excerciseController.excercise2[index].name,
-                        style: const TextStyle(fontSize: 36),
-                        textAlign: TextAlign.center),
-                    Container(
-                      height: 20,
-                      color: Colors.white12,
-                    ),
-                    Text(widget.excerciseController.excercise2[index].desc,
-                        style: const TextStyle(fontSize: 20)),
-                    const SizedBox(height: 20),
-                    Text(
-                        'Lakukan sebanyak ${widget.excerciseController.excercise2[index].rep.toString()} kali',
-                        style: const TextStyle(fontSize: 20)),
-                    _onPageViewChange(index),
-                  ],
+          return Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                YoutubePlayer(
+                  controller: _controller,
+                  liveUIColor: Colors.amber,
                 ),
-              ),
+                const SizedBox(height: 20),
+                _onPageViewChange(index),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+                  child: Text(widget.excerciseController.excercise2[index].name,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+                  child: Row(
+                    children: <Widget>[
+                      const Icon(Icons.access_time),
+                      const SizedBox(width: 10),
+                      Text('${widget.excerciseController.excercise2[index].rep.toString()} kali'),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(18.0),
+                  child: Divider(
+                    color: Colors.grey,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 18.0, right: 18.0),
+                  child: Text('Deskripsi',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+                  child: Text(widget.excerciseController.excercise2[index].desc,
+                      style: const TextStyle(fontSize: 16)
+                  ),
+                ),
+                //_onPageViewChange(index),
+              ],
             ),
           );
         },
-      )
+      ),
     );
   }
-  _onPageViewChange (index){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        const SizedBox(
-          height: 200,
+  _onPageViewChange(index) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+      child: Text('Latihan ${index+1}/${widget.excerciseController.excercise2.length}',
+        style: const TextStyle(
+          fontSize: 15,
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if(index <= 0)
-              const ElevatedButton(
-                onPressed: null,
-                child: Text('Sebelumnya'),
-              ),
-            if(index > 0)
-              ElevatedButton(
-                onPressed: () => controller.previousPage(duration: const Duration(seconds: 1), curve: Curves.easeInOut),
-                child: const Text('Sebelumnya'),
-              ),
-          ],
-        ),
-        const SizedBox(
-          width: 100,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if(index == widget.excerciseController.excercise2.length - 1)
-              ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Selesai'),
-              ),
-            if(index < widget.excerciseController.excercise2.length - 1)
-              ElevatedButton(
-                onPressed: () => controller.nextPage(duration: const Duration(seconds: 1), curve: Curves.easeInOut),
-                child: const Text('Selanjutnya'),
-              ),
-          ],
-        ),
-      ],
+      ),
     );
   }
 }

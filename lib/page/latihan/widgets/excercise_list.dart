@@ -54,16 +54,17 @@ class ExcerciseListCard extends StatelessWidget {
                       builder: (context) => AddDetail(
                           detailID: detailId.id,
                           youtubeID: detailId.vidUrl,
-                          index: index)));},
+                          index: index,
+                          name: detailId.name,)));},
                 ),
-                height: 170,
+                height: 110,
                 fit: BoxFit.fitHeight,
               ),
             ],
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Padding(
-            padding: EdgeInsets.all(16).copyWith(bottom: 0),
+            padding: const EdgeInsets.all(16).copyWith(bottom: 0),
             child: Text(
               detailId.name,
               style: const TextStyle(
@@ -73,7 +74,7 @@ class ExcerciseListCard extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
         ],
       ),
     );

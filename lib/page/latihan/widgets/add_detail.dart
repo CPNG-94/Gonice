@@ -10,6 +10,7 @@ class AddDetail extends StatefulWidget {
   final ExcerciseDBController excerciseDBController = Get.find();
   final listController = Get.put(ExcerciseController());
   final int index;
+  final String name;
   final String detailID;
   final String youtubeID;
 
@@ -17,7 +18,8 @@ class AddDetail extends StatefulWidget {
       {Key? key,
       required this.detailID,
       required this.youtubeID,
-      required this.index})
+      required this.index,
+      required this.name})
       : super(key: key);
 
   @override
@@ -31,6 +33,15 @@ class _AddDetailState extends State<AddDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
+          leading: IconButton(
+            color: Colors.black,
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          title: Text(widget.name, style: const TextStyle(color: Colors.black)),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
@@ -59,59 +70,84 @@ class _AddDetailState extends State<AddDetail> {
         ));
 
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Column(
+      body: Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               YoutubePlayer(
                 controller: _controller,
                 liveUIColor: Colors.amber,
               ),
-              SizedBox(height: 10),
-              Text(excercise.name,
-                  style: TextStyle(fontSize: 36), textAlign: TextAlign.center),
-              SizedBox(height: 10),
-              Text(excercise.desc, style: TextStyle(fontSize: 20)),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  if(quantity <= 0)
-                    const IconButton(
-                      onPressed: null,
-                      icon: Icon(Icons.remove_circle),
-                    ),
-                  if(quantity > 0)
-                    IconButton(
-                      onPressed: (){setState(()=>quantity--);},
-                      icon: Icon(Icons.remove_circle),
-                    ),
-                  Text('$quantity'),
-                  IconButton(
-                    onPressed: (){setState(()=>quantity++);},
-                    icon: Icon(Icons.add_circle),
-                  ),
-                ],
+              const SizedBox(height: 10),
+              const Padding(
+                padding: EdgeInsets.only(left: 18.0, right: 18.0),
+                child: Text('Deskripsi',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      createDB();
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ListScreen()));
-                      widget.listController.addExcercise(
-                          widget.excerciseDBController.excercise[widget.index]);
-                    },
-                    child: const Text('Tambah'),
-                  ),
-                ],
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+                child: Text(excercise.desc, style: const TextStyle(fontSize: 16)),
+              ),
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.only(left: 18.0, right: 18.0),
+                child: Divider(
+                  color: Colors.grey,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+                child: Row(
+                  children: <Widget>[
+                    const Text('Jumlah repetisi: ', style: TextStyle(fontSize: 15)),
+                    if(quantity <= 0)
+                      const IconButton(
+                        onPressed: null,
+                        icon: Icon(Icons.remove_circle),
+                      ),
+                    if(quantity > 0)
+                      IconButton(
+                        onPressed: (){setState(()=>quantity--);},
+                        icon: const Icon(Icons.remove_circle),
+                      ),
+                    Text('$quantity'),
+                    IconButton(
+                      onPressed: (){setState(()=>quantity++);},
+                      icon: const Icon(Icons.add_circle),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-        ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xFF00ADB5),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                  ),
+                  onPressed: () {
+                    createDB();
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ListScreen()));
+                    widget.listController.addExcercise(
+                        widget.excerciseDBController.excercise[widget.index]);
+                  },
+                  child: const Text('Tambah'),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -124,6 +160,7 @@ class _AddDetailState extends State<AddDetail> {
     if (snapshot.exists) {
       return readExcercise.fromJson(snapshot.data()!);
     }
+    return null;
   }
 
   Future createDB() async {
