@@ -24,66 +24,59 @@ class BeginnerListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 4.0),
       child: Card(
         shadowColor: Colors.green,
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Ink.image(
-                  image: NetworkImage(
-                    Exercises.excercise[index].image,
+        child: InkWell(
+          splashColor: const Color(0xFF00ADB5),
+          onTap: ()=> showModalBottomSheet(
+            context: context,
+            builder: (context) => buildSheet(context),
+            isScrollControlled: true,
+          ),
+          child: Column(
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Ink.image(
+                    image: NetworkImage(
+                      Exercises.excercise[index].image,
+                    ),
+                    height: 80,
+                    fit: BoxFit.fitHeight,
                   ),
-                  child: InkWell(
-                    onTap: (){},
+                ],
+              ),
+              SizedBox(height: 8),
+              Padding(
+                padding: EdgeInsets.all(16).copyWith(bottom: 0),
+                child: Text(
+                  Exercises.excercise[index].name,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
-                  height: 80,
-                  fit: BoxFit.fitHeight,
-                ),
-              ],
-            ),
-            SizedBox(height: 8),
-            Padding(
-              padding: EdgeInsets.all(16).copyWith(bottom: 0),
-              child: Text(
-                Exercises.excercise[index].name,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(16).copyWith(bottom: 0),
-              child: Text(
-                'Repetisi: ${Exercises.excercise[index].repetion}',
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.black,
+              Padding(
+                padding: EdgeInsets.all(16).copyWith(bottom: 0),
+                child: Text(
+                  'Repetisi: ${Exercises.excercise[index].repetion}',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            ),
-            ButtonBar(
-              alignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  onPressed: ()=> showModalBottomSheet(
-                    context: context,
-                    builder: (context) => buildSheet(context),
-                    isScrollControlled: true,
-                  ),
-                  icon: const Icon(Icons.info_outline_rounded),
-                ),
-              ],
-            ),
-          ],
+              SizedBox(height: 10),
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:gonice/page/latihan/screens/beginner_screen.dart';
 import 'package:gonice/page/latihan/screens/expert_screen.dart';
 import 'package:gonice/page/latihan/screens/list_screen.dart';
@@ -9,143 +8,139 @@ class LatihanList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.grey,
-                  spreadRadius: -4,
-                  blurRadius: 1,
-                  offset: Offset(0, 0),
-                ),
-              ],
+        children: [
+          Card(
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
             ),
-            child: Card(
-              shadowColor: Colors.grey,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: InkWell(
-                splashColor: Colors.grey,
-                onTap: () => Get.to(() => BeginnerScreen()),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const <Widget>[
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 100,
-                        child: Center(
-                          child: Text(
-                            "Beginner",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
+            child: InkWell(
+              child: Column(
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Ink.image(
+                        image: const NetworkImage(
+                          'https://cdn.vectorstock.com/i/1000x1000/45/96/man-male-push-up-gym-workout-exercise-vector-8294596.webp',
+                        ),
+                        child: InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => BeginnerScreen()),
+                            );
+                          },
+                        ),
+                        colorFilter: ColorFilter.mode(
+                          const Color(0xFF00ADB5).withOpacity(1.0),
+                          BlendMode.darken,
+                        ),
+                        height: 150,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      const Text(
+                        'Beginner',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.grey,
-                  spreadRadius: -4,
-                  blurRadius: 1,
-                  offset: Offset(0, 0),
-                ),
-              ],
+          Card(
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
             ),
-            child: Card(
-              shadowColor: Colors.grey,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: InkWell(
-                splashColor: Colors.grey,
-                onTap: () => Get.to(() => ExpertScreen()),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const <Widget>[
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 100,
-                        child: Center(
-                          child: Text(
-                            "Expert",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
+            child: InkWell(
+              child: Column(
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Ink.image(
+                        image: const NetworkImage(
+                          'https://thumbs.dreamstime.com/z/bearded-man-doing-lateral-raise-vector-drawing-bearded-man-doing-bent-over-row-vector-illustration-bearded-man-doing-workout-136115049.jpg',
+                        ),
+                        child: InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ExpertScreen()),
+                            );
+                          },
+                        ),
+                        colorFilter: ColorFilter.mode(
+                          const Color(0xFF00ADB5).withOpacity(1.0),
+                          BlendMode.darken,
+                        ),
+                        height: 150,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      const Text(
+                        'Expert',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.grey,
-                  spreadRadius: -4,
-                  blurRadius: 1,
-                  offset: Offset(0, 0),
-                ),
-              ],
+          Card(
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
             ),
-            child: Card(
-              shadowColor: Colors.grey,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: InkWell(
-                splashColor: Colors.grey,
-                onTap: () => Get.to(() => ListScreen()),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const <Widget>[
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 100,
-                        child: Center(
-                          child: Text(
-                            "Custom",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
+            child: InkWell(
+              child: Column(
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Ink.image(
+                        image: const NetworkImage(
+                          'http://cdn.onlinewebfonts.com/svg/img_132306.png',
+                        ),
+                        child: InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ListScreen()),
+                            );
+                          },
+                        ),
+                        colorFilter: ColorFilter.mode(
+                          const Color(0xFF00ADB5).withOpacity(1.0),
+                          BlendMode.darken,
+                        ),
+                        height: 150,
+                        fit: BoxFit.fill,
+                      ),
+                      const Text(
+                        'Custom',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
