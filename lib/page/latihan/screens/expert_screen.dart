@@ -9,9 +9,10 @@ class ExpertScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF2F2F2),
       appBar: AppBar(
         leading: IconButton(
-          color: Colors.black,
+          color: const Color(0xFF00ADB5),
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.of(context).pop();
@@ -20,9 +21,9 @@ class ExpertScreen extends StatelessWidget {
         centerTitle: true,
         title: const Text(
           "Expert",
-          style: TextStyle(color: Colors.green),
+          style: TextStyle(color: Color(0xFF00ADB5)),
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
       ),
       body: Stack(
@@ -39,7 +40,7 @@ class ExpertScreen extends StatelessWidget {
                   ));
                   showAlertDialog(context);
                 },
-                backgroundColor: Colors.green,
+                backgroundColor: const Color(0xFF00ADB5),
                 child: const Icon(Icons.play_arrow_rounded),
               ),
             ),
@@ -49,17 +50,16 @@ class ExpertScreen extends StatelessWidget {
     );
   }
   showAlertDialog(BuildContext context) {
-
     // set up the button
     Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {Navigator.pop(context, true);},
+      child: const Text("OK"),
+      onPressed: () {Navigator.of(context, rootNavigator: true).pop();},
     );
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Info"),
-      content: Text("Usap layar ke atas untuk latihan selanjutnya."),
+      title: const Text("Info"),
+      content: const Text("Usap layar ke atas untuk latihan selanjutnya."),
       actions: [
         okButton,
       ],

@@ -10,18 +10,16 @@ class LatihanScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "LATIHAN",
-          style: TextStyle(color: Colors.green),
+          "Latihan",
+          style: TextStyle(color: Color(0xFF00ADB5)),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: SafeArea(
-        child: Column(
-          children: const [
-            LatihanList(),
-          ],
-        ),
+      body: Column(
+        children: [
+          LatihanList(),
+        ],
       ),
     );
   }
