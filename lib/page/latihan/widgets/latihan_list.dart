@@ -25,7 +25,7 @@ class LatihanList extends StatelessWidget {
                     children: [
                       Ink.image(
                         image: const NetworkImage(
-                          'https://cdn.vectorstock.com/i/1000x1000/45/96/man-male-push-up-gym-workout-exercise-vector-8294596.webp',
+                          'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
                         ),
                         child: InkWell(
                           onTap: (){
@@ -62,6 +62,7 @@ class LatihanList extends StatelessWidget {
               borderRadius: BorderRadius.circular(24),
             ),
             child: InkWell(
+              splashColor: const Color(0xFF00ADB5),
               child: Column(
                 children: [
                   Stack(
@@ -69,7 +70,7 @@ class LatihanList extends StatelessWidget {
                     children: [
                       Ink.image(
                         image: const NetworkImage(
-                          'https://thumbs.dreamstime.com/z/bearded-man-doing-lateral-raise-vector-drawing-bearded-man-doing-bent-over-row-vector-illustration-bearded-man-doing-workout-136115049.jpg',
+                          'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
                         ),
                         child: InkWell(
                           onTap: (){
@@ -113,7 +114,7 @@ class LatihanList extends StatelessWidget {
                     children: [
                       Ink.image(
                         image: const NetworkImage(
-                          'http://cdn.onlinewebfonts.com/svg/img_132306.png',
+                          'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=920&q=80',
                         ),
                         child: InkWell(
                           onTap: (){
@@ -128,7 +129,7 @@ class LatihanList extends StatelessWidget {
                           BlendMode.darken,
                         ),
                         height: 150,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.fitWidth,
                       ),
                       const Text(
                         'Custom',
