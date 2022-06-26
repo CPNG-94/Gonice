@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider<NewsProvider>(
             create: (_) => NewsProvider(apiService: ApiService()),
-            child: const NewsPage(),
+            child: NewsPage(),
           )
         ],
         child: MaterialApp(

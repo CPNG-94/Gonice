@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gonice/page/latihan/screens/beginner_detail_screen.dart';
 import 'package:gonice/page/latihan/widgets/beginner_detail.dart';
 import 'package:gonice/page/latihan/widgets/beginner_list.dart';
 
@@ -35,10 +34,9 @@ class BeginnerScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: FloatingActionButton(
-                onPressed: (){
+                onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => BeginnerDetail(index: index)
-                  ));
+                      builder: (context) => BeginnerDetail(index: index)));
                   showAlertDialog(context);
                 },
                 backgroundColor: const Color(0xFF00ADB5),
@@ -50,11 +48,14 @@ class BeginnerScreen extends StatelessWidget {
       ),
     );
   }
+
   showAlertDialog(BuildContext context) {
     // set up the button
     Widget okButton = TextButton(
       child: Text("OK"),
-      onPressed: () {Navigator.of(context, rootNavigator: true).pop();},
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
     );
 
     // set up the AlertDialog

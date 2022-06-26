@@ -9,12 +9,27 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
-class NewsPage extends StatelessWidget {
-  const NewsPage({Key? key}) : super(key: key);
+class NewsPage extends StatefulWidget {
+  NewsPage({Key? key}) : super(key: key);
+
+  @override
+  State<NewsPage> createState() => _NewsPageState();
+}
+
+class _NewsPageState extends State<NewsPage> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
+
   static const String _baseUrl = 'https://newsapi.org/v2/';
   static const String _apiKey = '6ace2996147146779027ae5a0c837f3c';
   static const String _category = 'health';
   static const String _country = 'id';
+
+  @override
+  void initState() {
+    topHeadlines();
+    super.initState();
+  }
 
   Widget _buildList() {
     return Consumer<NewsProvider>(
@@ -23,6 +38,7 @@ class NewsPage extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (state.state == ResultState.HasData) {
           return RefreshIndicator(
+              key: _refreshIndicatorKey,
               onRefresh: topHeadlines,
               child: ListView.builder(
                 shrinkWrap: true,
@@ -35,8 +51,17 @@ class NewsPage extends StatelessWidget {
         } else if (state.state == ResultState.NoData) {
           return const Center(child: CircularProgressIndicator());
         } else if (state.state == ResultState.Error) {
-          return const Center(
-              child: Text("Tidak Ada Internet coba periksa Jaringan anda"));
+          return Column(
+            children: <Widget>[
+              const Center(
+                child: const Text("Tidak Ada Internet Periksa Jaringan Anda"),
+              ),
+              IconButton(
+                  icon: const Icon(Icons.refresh),
+                  tooltip: 'Refresh',
+                  onPressed: topHeadlines)
+            ],
+          );
         } else {
           return const Center(child: Text(''));
         }
@@ -47,6 +72,7 @@ class NewsPage extends StatelessWidget {
   Future<ArticlesResult> topHeadlines() async {
     final response = await http.get(Uri.parse(_baseUrl +
         "top-headlines?country=$_country&category=$_category&apiKey=$_apiKey"));
+    setState(() {});
     if (response.statusCode == 200) {
       return ArticlesResult.fromJson(json.decode(response.body));
     } else {
