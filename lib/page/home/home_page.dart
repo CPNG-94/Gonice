@@ -71,17 +71,18 @@ class _HomePageState extends State<HomePage> {
                               ),
                               SizedBox(
                                   width: 250,
-                                  child: Text(
+                                  child: Expanded(
+                                      child: Text(
                                     streamSnapshot.data!['name'],
                                     maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
+                                    overflow: TextOverflow.clip,
                                     softWrap: false,
                                     style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.white,
                                     ),
-                                  ))
+                                  )))
                             ],
                           ),
                           Expanded(child: Container()),

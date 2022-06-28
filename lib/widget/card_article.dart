@@ -63,8 +63,8 @@ class CardArticle extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             article.title!,
@@ -75,7 +75,6 @@ class CardArticle extends StatelessWidget {
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               const Icon(
                                 CupertinoIcons.person_alt,
@@ -85,7 +84,7 @@ class CardArticle extends StatelessWidget {
                                   child: Text(
                                 article.author!,
                                 overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.start,
+                                textAlign: TextAlign.center,
                                 maxLines: 1,
                                 softWrap: false,
                               ))
