@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gonice/page/latihan/screens/expert_detail_screen.dart';
 import 'package:gonice/page/latihan/widgets/expert_detail.dart';
 import 'package:gonice/page/latihan/widgets/expert_list.dart';
 
@@ -36,7 +37,7 @@ class ExpertScreen extends StatelessWidget {
               child: FloatingActionButton(
                 onPressed: (){
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ExpertDetail(index: index)
+                      builder: (context) => ExpertDetailScreen(index: index)
                   ));
                   showAlertDialog(context);
                 },

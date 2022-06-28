@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gonice/page/latihan/screens/excercise_detail_screen.dart';
 import 'package:gonice/page/latihan/screens/excercise_screen.dart';
 import 'package:gonice/page/latihan/widgets/excercise_added.dart';
 import 'package:gonice/page/latihan/widgets/excercise_detail.dart';
@@ -65,7 +66,7 @@ class ListScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
-                              ExcerciseDetail(
+                              ExcerciseDetailScreen(
                                   index: index, username: streamSnapshot.data!['uid'])));
                       showAlertDialog(context);
                     },
