@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.white),
                               ),
                               SizedBox(
-                                  width: 250,
+                                  width: MediaQuery.of(context).size.width*2 / 4,
                                   child: Expanded(
                                       child: Text(
                                     streamSnapshot.data!['name'],
@@ -95,8 +95,8 @@ class _HomePageState extends State<HomePage> {
                                           const UserProfilePage()));
                             },
                             child: Container(
-                              width: 75,
-                              height: 75,
+                              width: MediaQuery.of(context).size.width / 4,
+                              height: MediaQuery.of(context).size.width / 4,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 4,
@@ -125,6 +125,16 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SliderBox(),
+                    Container (
+                      padding: const EdgeInsets.only(top: 10, bottom: 5, left: 16),
+                      child: Row(
+                        children: [
+                          const Text('BMI Checker',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          Expanded(child: Container())
+                        ],
+                      ),
+                    ),
                     const bmiCalculator(),
                   ],
                 ),

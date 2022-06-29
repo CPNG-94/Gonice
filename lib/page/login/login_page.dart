@@ -31,172 +31,174 @@ class _LoginPageState extends State<LoginPage> {
           left: 16,
           right: 16,
         ),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Hello!! Welcome back!',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-              const SizedBox(
-                height: 24.0,
-              ),
-              const Text('Email Address',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-              const SizedBox(
-                height: 8.0,
-              ),
-
-              //Email Colom
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 1),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(12),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Hello, \nTrainers!',
+                  style: Theme.of(context).textTheme.headline4,
                 ),
-                child: TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Email tidak boleh kosong';
-                    } else if (!value.contains('@') || !value.contains('.')) {
-                      return 'Format Email tidak sesuai';
-                    } else {
-                      return null;
-                    }
-                  },
+                const SizedBox(
+                  height: 24.0,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text('Password',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-              const SizedBox(
-                height: 10,
-              ),
-
-              /// KOLOM Kata Sandi
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 1),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(12),
+                const Text('Email Address',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                const SizedBox(
+                  height: 8.0,
                 ),
-                child: TextFormField(
-                  controller: _passwordController,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  obscureText: _passwordVisible,
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      icon: Icon((_passwordVisible)
-                          ? Icons.visibility_off
-                          : Icons.visibility),
-                      onPressed: () {
-                        setState(() {
-                          _passwordVisible = !_passwordVisible;
-                        });
-                      },
-                    ),
-                    border: InputBorder.none,
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Kata Sandi tidak boleh kosong';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-              ),
 
-              /// LOADING INDIKATOR
-              Visibility(
-                visible: _visible,
-                child: const SpinKitRipple(
-                  color: Colors.teal,
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              SizedBox(
-                width: 140,
-                height: 45,
-                // ignore: deprecated_member_use
-                child: RaisedButton(
-                  onPressed: () async {
-                    /// CEK APAKAH EMAIL DAN PASSWORD SUDAH TERISI DENGAN FORMAT YANG BENAR
-                    if (_formKey.currentState!.validate()) {
-                      setState(() {
-                        _visible = true;
-                      });
-
-                      /// CEK APAKAH EMAIL DAN PASSWORD SUDAH TERDAFTAR / BELUM
-                      bool shouldNavigate = await Authentication.signInHandler(
-                        _emailController.text,
-                        _passwordController.text,
-                      );
-
-                      if (shouldNavigate) {
-                        setState(() {
-                          _visible = false;
-                        });
-
-                        _formKey.currentState!.reset();
-
-                        /// MASUK KE HOMEPAGE JIKA SUKSES
-                        Route route = MaterialPageRoute(
-                            builder: (context) => MyDashboard());
-                        Navigator.pushReplacement(context, route);
-                      } else {
-                        setState(() {
-                          _visible = false;
-                        });
-                      }
-                    }
-                  },
-                  color: Colors.teal,
-                  shape: RoundedRectangleBorder(
+                //Email Colom
+                Container(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 1),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  child: TextFormField(
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Email tidak boleh kosong';
+                      } else if (!value.contains('@') || !value.contains('.')) {
+                        return 'Format Email tidak sesuai';
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Do not have on account?',
-                    style: TextStyle(color: Colors.grey),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text('Password',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                const SizedBox(
+                  height: 10,
+                ),
+
+                /// KOLOM Kata Sandi
+                Container(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 1),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Route route = MaterialPageRoute(
-                          builder: (context) => const RegisterPage());
-                      Navigator.push(context, route);
+                  child: TextFormField(
+                    controller: _passwordController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    obscureText: _passwordVisible,
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        icon: Icon((_passwordVisible)
+                            ? Icons.visibility_off
+                            : Icons.visibility),
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
+                      ),
+                      border: InputBorder.none,
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Kata Sandi tidak boleh kosong';
+                      } else {
+                        return null;
+                      }
                     },
+                  ),
+                ),
+
+                /// LOADING INDIKATOR
+                Visibility(
+                  visible: _visible,
+                  child: const SpinKitRipple(
+                    color: Colors.teal,
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                SizedBox(
+                  width: 140,
+                  height: 45,
+                  // ignore: deprecated_member_use
+                  child: RaisedButton(
+                    onPressed: () async {
+                      /// CEK APAKAH EMAIL DAN PASSWORD SUDAH TERISI DENGAN FORMAT YANG BENAR
+                      if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          _visible = true;
+                        });
+
+                        /// CEK APAKAH EMAIL DAN PASSWORD SUDAH TERDAFTAR / BELUM
+                        bool shouldNavigate = await Authentication.signInHandler(
+                          _emailController.text,
+                          _passwordController.text,
+                        );
+
+                        if (shouldNavigate) {
+                          setState(() {
+                            _visible = false;
+                          });
+
+                          _formKey.currentState!.reset();
+
+                          /// MASUK KE HOMEPAGE JIKA SUKSES
+                          Route route = MaterialPageRoute(
+                              builder: (context) => MyDashboard());
+                          Navigator.pushReplacement(context, route);
+                        } else {
+                          setState(() {
+                            _visible = false;
+                          });
+                        }
+                      }
+                    },
+                    color: Colors.teal,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     child: const Text(
-                      'Sign Up',
-                      style: TextStyle(fontSize: 15, color: Colors.teal),
+                      'Login',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Do not have on account?',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Route route = MaterialPageRoute(
+                            builder: (context) => const RegisterPage());
+                        Navigator.push(context, route);
+                      },
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(fontSize: 15, color: Colors.teal),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

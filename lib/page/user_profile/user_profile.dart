@@ -5,7 +5,6 @@ import 'package:gonice/page/login/login_page.dart';
 import 'package:gonice/widget/alarm.dart';
 import 'package:gonice/page/user_profile/user_settings.dart';
 import 'package:gonice/widget/bmi_user.dart';
-import 'dart:convert';
 
 class UserProfilePage extends StatefulWidget {
   const UserProfilePage({Key? key}) : super(key: key);
@@ -15,7 +14,6 @@ class UserProfilePage extends StatefulWidget {
 }
 
 class _UserProfilePageState extends State<UserProfilePage> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   User? user = FirebaseAuth.instance.currentUser;
   CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('users');
@@ -99,7 +97,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Text(user!.email!)
+                        Text(streamSnapshot.data!['email'])
                       ],
                     ),
                     Expanded(child: Container()),

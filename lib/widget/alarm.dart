@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:timezone/data/latest.dart' as tz;
+import 'package:gonice/services/alarm_scheduler.dart';
+import 'package:provider/provider.dart';
 
 class notification extends StatefulWidget {
   const notification({Key? key}) : super(key: key);
@@ -9,63 +10,55 @@ class notification extends StatefulWidget {
 }
 
 class _notificationState extends State<notification> {
-  TextEditingController Notification_title = TextEditingController();
-  TextEditingController Notification_descrp = TextEditingController();
   bool isSwitched = false;
 
   @override
   void initState() {
     super.initState();
-    tz.initializeTimeZones();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        elevation: 10,
-        child: Row(
-          children: [
-            SizedBox(
-              width: 15,
-              height: 50,
-            ),
-            Icon(
-              Icons.alarm,
-              color: Colors.lightGreen,
-              size: 24.0,
-            ),
-            SizedBox(width: 15),
-            Column(
-              children: [
-                Text(
-                  "Alarm",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text('11:00 WIB')
-              ],
-            ),
-            Expanded(child: Container()),
-            Switch(
-              value: isSwitched,
-              onChanged: (value) {
-                setState(() {
-                  isSwitched = value;
-                  print(isSwitched);
-                });
-              },
-              activeTrackColor: Colors.lightGreenAccent,
-              activeColor: Colors.green,
-            ),
-          ],
-        ),
-      ),
+    return Consumer<SchedulingProvider>(
+      builder: (context, provider, child) {
+        return Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          elevation: 10,
+          child: Row(
+            children: [
+              const SizedBox(width: 15, height: 50,),
+              const Icon(
+                Icons.alarm,
+                color: Colors.lightGreen,
+                size: 24.0,
+              ),
+              const SizedBox(width: 15),
+              Column(
+                children: [
+                  const Text("Alarm", style: TextStyle(fontWeight: FontWeight.bold),),
+                  const SizedBox(height: 5,),
+                  const Text('11:00 WIB')
+                ],
+              ),
+              Expanded(child: Container()),
+              Consumer<SchedulingProvider>(
+                builder: (context, scheduled, _) {
+                  return Switch.adaptive(
+                    value: provider.isScheduled,
+                    onChanged: (value) async {
+                      scheduled.scheduledNotification(value);
+                      provider.enableDailyNotification(value);
+                    },
+                  );
+                },
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }
+

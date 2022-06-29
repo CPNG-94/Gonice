@@ -57,6 +57,9 @@ dependencies:
   fluttertoast: ^8.0.9
   flutter_spinkit: ^5.1.0
   youtube_player_flutter: ^8.0.0
+  flutter_native_timezone: ^2.0.0
+  shared_preferences: ^2.0.15
+  android_alarm_manager_plus: ^2.0.6
 
 dev_dependencies:
   flutter_test:
