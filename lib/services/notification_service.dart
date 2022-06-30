@@ -45,7 +45,7 @@ class NotificationService {
   tz.TZDateTime dailyRepeat() {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.getLocation(_timezone));
     tz.TZDateTime scheduledDate =
-    tz.TZDateTime(tz.getLocation(_timezone), now.year, now.month, now.day, 15);
+    tz.TZDateTime(tz.getLocation(_timezone), now.year, now.month, now.day, 11);
     if (scheduledDate.isBefore(now)) {
       scheduledDate = scheduledDate.add(const Duration(days: 1));
     }
