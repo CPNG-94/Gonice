@@ -24,20 +24,20 @@ class _ExpertDetailState extends State<ExpertDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      onPageChanged: _onPageViewChange,
-      scrollDirection: Axis.vertical,
-      controller: controller,
-      itemCount: ExercisesExpert.excercise.length,
-      itemBuilder: (BuildContext context, int index) {
-        final YoutubePlayerController _controller = YoutubePlayerController(
-            initialVideoId: ExercisesExpert.excercise[index].video,
-            flags: const YoutubePlayerFlags(
-              autoPlay: false,
-              mute: false,
-            ));
-        return Expanded(
-          child: Column(
+    return Scaffold(
+      body: PageView.builder(
+        onPageChanged: _onPageViewChange,
+        scrollDirection: Axis.vertical,
+        controller: controller,
+        itemCount: ExercisesExpert.excercise.length,
+        itemBuilder: (BuildContext context, int index) {
+          final YoutubePlayerController _controller = YoutubePlayerController(
+              initialVideoId: ExercisesExpert.excercise[index].video,
+              flags: const YoutubePlayerFlags(
+                autoPlay: false,
+                mute: false,
+              ));
+          return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               YoutubePlayer(
@@ -86,11 +86,10 @@ class _ExpertDetailState extends State<ExpertDetail> {
                     style: const TextStyle(fontSize: 16)
                 ),
               ),
-              //_onPageViewChange(index),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
   _onPageViewChange(index) {
@@ -104,47 +103,3 @@ class _ExpertDetailState extends State<ExpertDetail> {
     );
   }
 }
-//   _onPageViewChange (index){
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: <Widget>[
-//         const SizedBox(
-//           height: 200,
-//         ),
-//         Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             if(index <= 0)
-//               const ElevatedButton(
-//                 onPressed: null,
-//                 child: Text('Sebelumnya'),
-//               ),
-//             if(index > 0)
-//               ElevatedButton(
-//                 onPressed: () => controller.previousPage(duration: const Duration(seconds: 1), curve: Curves.easeInOut),
-//                 child: const Text('Sebelumnya'),
-//               ),
-//           ],
-//         ),
-//         const SizedBox(
-//           width: 100,
-//         ),
-//         Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             if(index == ExercisesExpert.excercise.length - 1)
-//               ElevatedButton(
-//                 onPressed: () => Navigator.pop(context),
-//                 child: const Text('Selesai'),
-//               ),
-//             if(index < ExercisesExpert.excercise.length - 1)
-//               ElevatedButton(
-//                 onPressed: () => controller.nextPage(duration: const Duration(seconds: 1), curve: Curves.easeInOut),
-//                 child: const Text('Selanjutnya'),
-//               ),
-//           ],
-//         ),
-//       ],
-//     );
-//   }
-// }

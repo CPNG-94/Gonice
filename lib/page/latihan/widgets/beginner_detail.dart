@@ -22,20 +22,20 @@ class _BeginnerDetailState extends State<BeginnerDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      onPageChanged: _onPageViewChange,
-      scrollDirection: Axis.vertical,
-      controller: controller,
-      itemCount: Exercises.excercise.length,
-      itemBuilder: (BuildContext context, int index) {
-        final YoutubePlayerController _controller = YoutubePlayerController(
-            initialVideoId: Exercises.excercise[index].video,
-            flags: const YoutubePlayerFlags(
-              autoPlay: false,
-              mute: false,
-            ));
-        return Expanded(
-          child: Column(
+    return Scaffold(
+      body: PageView.builder(
+        onPageChanged: _onPageViewChange,
+        scrollDirection: Axis.vertical,
+        controller: controller,
+        itemCount: Exercises.excercise.length,
+        itemBuilder: (BuildContext context, int index) {
+          final YoutubePlayerController _controller = YoutubePlayerController(
+              initialVideoId: Exercises.excercise[index].video,
+              flags: const YoutubePlayerFlags(
+                autoPlay: false,
+                mute: false,
+              ));
+          return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               YoutubePlayer(
@@ -85,9 +85,9 @@ class _BeginnerDetailState extends State<BeginnerDetail> {
                 ),
               ),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
   _onPageViewChange(index) {

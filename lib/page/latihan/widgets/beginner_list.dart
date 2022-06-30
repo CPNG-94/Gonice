@@ -6,82 +6,72 @@ class BeginnerList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: ListView.builder(
+    return Scaffold(
+      body: ListView.builder(
         itemCount: Exercises.excercise.length,
         itemBuilder: (BuildContext context, int index) {
-          return BeginnerListCard(index: index);
+          return Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 4.0),
+            child: Card(
+              shadowColor: Colors.green,
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(24),
+              ),
+              child: InkWell(
+                splashColor: const Color(0xFF00ADB5),
+                onTap: ()=> showModalBottomSheet(
+                  context: context,
+                  builder: (context) => buildSheet(context, index),
+                  isScrollControlled: true,
+                ),
+                child: Column(
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Ink.image(
+                          image: NetworkImage(
+                            Exercises.excercise[index].image,
+                          ),
+                          height: 80,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8),
+                    Padding(
+                      padding: EdgeInsets.all(16).copyWith(bottom: 0),
+                      child: Text(
+                        Exercises.excercise[index].name,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(16).copyWith(bottom: 0),
+                      child: Text(
+                        'Repetisi: ${Exercises.excercise[index].repetion}',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                ),
+              ),
+            ),
+          );
         },
       ),
     );
   }
-}
-
-class BeginnerListCard extends StatelessWidget {
-  final int index;
-  const BeginnerListCard({Key? key, required this.index}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 4.0),
-      child: Card(
-        shadowColor: Colors.green,
-        clipBehavior: Clip.antiAlias,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
-        child: InkWell(
-          splashColor: const Color(0xFF00ADB5),
-          onTap: ()=> showModalBottomSheet(
-            context: context,
-            builder: (context) => buildSheet(context),
-            isScrollControlled: true,
-          ),
-          child: Column(
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Ink.image(
-                    image: NetworkImage(
-                      Exercises.excercise[index].image,
-                    ),
-                    height: 80,
-                    fit: BoxFit.fitHeight,
-                  ),
-                ],
-              ),
-              SizedBox(height: 8),
-              Padding(
-                padding: EdgeInsets.all(16).copyWith(bottom: 0),
-                child: Text(
-                  Exercises.excercise[index].name,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(16).copyWith(bottom: 0),
-                child: Text(
-                  'Repetisi: ${Exercises.excercise[index].repetion}',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-  buildSheet(BuildContext context) => Column(
+  buildSheet(BuildContext context, index) => Column(
     mainAxisSize: MainAxisSize.min,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [

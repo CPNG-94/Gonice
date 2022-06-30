@@ -25,22 +25,24 @@ class _ExcerciseDetailState extends State<ExcerciseDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<Saved>>(
-      stream: readSaved(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Text('Terjadi Kesalahan! ${snapshot.error}');
-        } else if (snapshot.hasData) {
-          return PageView(
-            scrollDirection: Axis.vertical,
-            children: snapshot.data!.map((e) => buildPage(e, context)).toList(),
-          );
-        } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
+    return Scaffold(
+      body: StreamBuilder<List<Saved>>(
+        stream: readSaved(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text('Terjadi Kesalahan! ${snapshot.error}');
+          } else if (snapshot.hasData) {
+            return PageView(
+              scrollDirection: Axis.vertical,
+              children: snapshot.data!.map((e) => buildPage(e, context)).toList(),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
   }
 
@@ -52,57 +54,55 @@ class _ExcerciseDetailState extends State<ExcerciseDetail> {
         mute: false,
       )
     );
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          YoutubePlayer(
-            controller: _controller,
-            liveUIColor: Colors.amber,
-          ),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.only(left: 18.0, right: 18.0),
-            child: Text(saved.name,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        YoutubePlayer(
+          controller: _controller,
+          liveUIColor: Colors.amber,
+        ),
+        const SizedBox(height: 20),
+        Padding(
+          padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+          child: Text(saved.name,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.only(left: 18.0, right: 18.0),
-            child: Row(
-              children: <Widget>[
-                const Icon(Icons.access_time),
-                const SizedBox(width: 10),
-                Text('${saved.rep.toString()} kali', style: const TextStyle(color: Colors.black)),
-              ],
-            ),
+        ),
+        const SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+          child: Row(
+            children: <Widget>[
+              const Icon(Icons.access_time),
+              const SizedBox(width: 10),
+              Text('${saved.rep.toString()} kali', style: const TextStyle(color: Colors.black)),
+            ],
           ),
-          const Padding(
-            padding: EdgeInsets.all(18.0),
-            child: Divider(
-              color: Colors.grey,
-            ),
+        ),
+        const Padding(
+          padding: EdgeInsets.all(18.0),
+          child: Divider(
+            color: Colors.grey,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 18.0, right: 18.0),
-            child: Text('Deskripsi',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+        ),
+        const Padding(
+          padding: EdgeInsets.only(left: 18.0, right: 18.0),
+          child: Text('Deskripsi',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.only(left: 18.0, right: 18.0),
-            child: Text(saved.desc,
-                style: const TextStyle(fontSize: 16)
-            ),
+        ),
+        const SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+          child: Text(saved.desc,
+              style: const TextStyle(fontSize: 16)
           ),
-          //_onPageViewChange(index),
-        ],
-      ),
+        ),
+        //_onPageViewChange(index),
+      ],
     );
   }
 
