@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class bmiCalculator extends StatefulWidget {
-  const bmiCalculator({Key? key}) : super(key: key);
+class BmiCalculator extends StatefulWidget {
+  const BmiCalculator({Key? key}) : super(key: key);
 
   @override
-  State<bmiCalculator> createState() => _bmiCalculatorState();
+  State<BmiCalculator> createState() => _BmiCalculatorState();
 }
 
-class _bmiCalculatorState extends State<bmiCalculator> {
+class _BmiCalculatorState extends State<BmiCalculator> {
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
-  List<String> _image = [
+  final List<String> _image = [
     'assets/userWeight/Vector.jpg',
     'assets/userWeight/Vector-1.jpg',
     'assets/userWeight/Vector-2.jpg',
@@ -53,164 +53,155 @@ class _bmiCalculatorState extends State<bmiCalculator> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-        color: Colors.white,
-        elevation: 10,
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                keyboardType:
-                TextInputType.numberWithOptions(decimal: true),
-                decoration: InputDecoration(labelText: 'Height (cm)'),
-                controller: _heightController,
+    return Card(
+      color: Colors.white,
+      elevation: 10,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "BMI Calculator",
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              TextField(
-                keyboardType:
-                TextInputType.numberWithOptions(decimal: true),
-                decoration: InputDecoration(
-                  labelText: 'Weight (kg)',
+            ),
+            TextField(
+              keyboardType:
+              const TextInputType.numberWithOptions(decimal: true),
+              decoration: const InputDecoration(labelText: 'Height (cm)'),
+              controller: _heightController,
+            ),
+            TextField(
+              keyboardType:
+              const TextInputType.numberWithOptions(decimal: true),
+              decoration: const InputDecoration(
+                labelText: 'Weight (kg)',
+              ),
+              controller: _weightController,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: [
+                Image.asset(_body, width: 50  ,),
+                Expanded(child: Container()),
+                Column(
+                  children: [
+                    const Text('Condition', style: TextStyle(fontWeight: FontWeight.bold),),
+                    const SizedBox(height: 10,),
+                    Text(
+                      _message,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
-                controller: _weightController,
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                children: [
-                  Image.asset(_body, width: 50  ,),
-                  Expanded(child: Container()),
-                  Container(
-                    child: Column(
-                      children: [
-                        Text('Condition', style: TextStyle(fontWeight: FontWeight.bold),),
-                        SizedBox(height: 10,),
-                        Text(
-                          _message,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(child: Container()),
-                  Container(
-                    child: Column(
-                      children: [
-                        Text('BMI', style: TextStyle(fontWeight: FontWeight.bold),),
-                        SizedBox(height: 10,),
-                        Text(
-                          _bmi == null ? '-' : _bmi!.toStringAsFixed(2),
-                        )
-                      ],
-                    ),
-                  ),
-                  Expanded(child: Container()),
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                        )
+                Expanded(child: Container()),
+                Column(
+                  children: [
+                    const Text('BMI', style: TextStyle(fontWeight: FontWeight.bold),),
+                    const SizedBox(height: 10,),
+                    Text(
+                      _bmi == null ? '-' : _bmi!.toStringAsFixed(2),
                     )
+                  ],
                 ),
-                onPressed: _calculate,
-                child: Text('Calculate'),
+                Expanded(child: Container()),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                      )
+                  )
               ),
-            ],
-          ),
+              onPressed: _calculate,
+              child: const Text('Calculate'),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  _bmiUser(int height, int weight){
-    return Container(
-      child: Card(
-        color: Colors.white,
-        elevation: 10,
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                children: [
-                  Image.asset(_body, width: 50  ,),
-                  Expanded(child: Container()),
-                  Column(
-                    children: [
-                      Container(
-                        child: Column(
-                          children: [
-                            Text('Height', style: TextStyle(fontWeight: FontWeight.bold),),
-                            SizedBox(height: 10,),
-                            Text(
-                              height.toString(),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(child: Container()),
-                      Container(
-                        child: Column(
-                          children: [
-                            Text('Condition', style: TextStyle(fontWeight: FontWeight.bold),),
-                            SizedBox(height: 10,),
-                            Text(
-                              _message,
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(child: Container()),
-                  Column(
-                    children: [
-                      Container(
-                        child: Column(
-                          children: [
-                            Text('Height', style: TextStyle(fontWeight: FontWeight.bold),),
-                            SizedBox(height: 10,),
-                            Text(
-                              height.toString(),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(child: Container()),
-                      Container(
-                        child: Column(
-                          children: [
-                            Text('BMI', style: TextStyle(fontWeight: FontWeight.bold),),
-                            SizedBox(height: 10,),
-                            Text(
-                              _bmi == null ? '-' : _bmi!.toStringAsFixed(2),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(child: Container()),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // _bmiUser(int height, int weight){
+  //   return Card(
+  //     color: Colors.white,
+  //     elevation: 10,
+  //     child: Padding(
+  //       padding: const EdgeInsets.all(20),
+  //       child: Column(
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: [
+  //           Row(
+  //             children: [
+  //               Image.asset(_body, width: 50  ,),
+  //               Expanded(child: Container()),
+  //               Column(
+  //                 children: [
+  //                   Column(
+  //                     children: [
+  //                       const Text('Height', style: TextStyle(fontWeight: FontWeight.bold),),
+  //                       const SizedBox(height: 10,),
+  //                       Text(
+  //                         height.toString(),
+  //                         textAlign: TextAlign.center,
+  //                       ),
+  //                     ],
+  //                   ),
+  //                   Expanded(child: Container()),
+  //                   Column(
+  //                     children: [
+  //                       const Text('Condition', style: TextStyle(fontWeight: FontWeight.bold),),
+  //                       const SizedBox(height: 10,),
+  //                       Text(
+  //                         _message,
+  //                         textAlign: TextAlign.center,
+  //                       ),
+  //                     ],
+  //                   ),
+  //                 ],
+  //               ),
+  //               Expanded(child: Container()),
+  //               Column(
+  //                 children: [
+  //                   Column(
+  //                     children: [
+  //                       const Text('Height', style: TextStyle(fontWeight: FontWeight.bold),),
+  //                       const SizedBox(height: 10,),
+  //                       Text(
+  //                         height.toString(),
+  //                         textAlign: TextAlign.center,
+  //                       ),
+  //                     ],
+  //                   ),
+  //                   Expanded(child: Container()),
+  //                   Column(
+  //                     children: [
+  //                       const Text('BMI', style: TextStyle(fontWeight: FontWeight.bold),),
+  //                       const SizedBox(height: 10,),
+  //                       Text(
+  //                         _bmi == null ? '-' : _bmi!.toStringAsFixed(2),
+  //                       )
+  //                     ],
+  //                   ),
+  //                 ],
+  //               ),
+  //               Expanded(child: Container()),
+  //             ],
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 }
