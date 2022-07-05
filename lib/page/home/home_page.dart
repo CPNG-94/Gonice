@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   User? user = FirebaseAuth.instance.currentUser;
   CollectionReference usersCollection =
-      FirebaseFirestore.instance.collection('users');
+  FirebaseFirestore.instance.collection('users');
   @override
   void initState() {
     super.initState();
@@ -70,19 +70,18 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.white),
                               ),
                               SizedBox(
-                                  width: MediaQuery.of(context).size.width*2 / 4,
-                                  child: Expanded(
-                                      child: Text(
+                                  width: 250,
+                                  child: Text(
                                     streamSnapshot.data!['name'],
                                     maxLines: 1,
-                                    overflow: TextOverflow.clip,
+                                    overflow: TextOverflow.ellipsis,
                                     softWrap: false,
                                     style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.white,
                                     ),
-                                  )))
+                                  ))
                             ],
                           ),
                           Expanded(child: Container()),
@@ -92,11 +91,11 @@ class _HomePageState extends State<HomePage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const UserProfilePage()));
+                                      const UserProfilePage()));
                             },
                             child: Container(
-                              width: MediaQuery.of(context).size.width / 4,
-                              height: MediaQuery.of(context).size.width / 4,
+                              width: 75,
+                              height: 75,
                               decoration: BoxDecoration(
                                   border: Border.all(
                                       width: 4,
@@ -125,17 +124,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SliderBox(),
-                    Container (
-                      padding: const EdgeInsets.only(top: 10, bottom: 5, left: 16),
-                      child: Row(
-                        children: [
-                          const Text('BMI Checker',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          Expanded(child: Container())
-                        ],
-                      ),
-                    ),
-                    const bmiCalculator(),
+                    const BmiCalculator(),
                   ],
                 ),
               );
